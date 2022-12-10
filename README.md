@@ -1,9 +1,15 @@
-# Getting Started with Create React App
+# Recipes Finder Front End
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Live Demo
+[Demo](https://fastapi-production-bb29.up.railway.app/)
+
+## Back End Repository
+https://github.com/williamang171/recipes-finder-backend
 
 ## Environment Variables
 Replace the `REACT_APP_RECAPTCHA_SITE_KEY` with your own reCAPTCHA site key that matches with the secret key in the backend application
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
