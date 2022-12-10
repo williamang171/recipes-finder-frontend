@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Live Demo
-[Demo](https://fastapi-production-bb29.up.railway.app/)
+[Demo](https://recipes-finder-fe.netlify.app/)
 
 ## Back End Repository
 https://github.com/williamang171/recipes-finder-backend
