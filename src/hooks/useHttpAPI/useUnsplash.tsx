@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useCallback, useState } from "react";
 
+import axios from "configs/axios-instance";
 import { Image } from "interfaces/types";
 import useHandleHttpRequestError from '../useHandleHttpRequestError';
 

@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useCallback, useContext, useState } from "react";
 
+import axios from "configs/axios-instance";
 import { Recipe } from "interfaces/types";
 import { useSnackbar } from 'notistack';
 import useHandleHttpRequestError from 'hooks/useHandleHttpRequestError';

@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useSnackbar } from "notistack";
 import { useCallback, useState } from "react";
 
+import axios from "configs/axios-instance";
 import useHandleHttpRequestError from '../useHandleHttpRequestError';
 
 const apiBasePath = "api/v1/predict";
