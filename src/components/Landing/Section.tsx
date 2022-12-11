@@ -1,8 +1,4 @@
-
-import { styled } from '@mui/material/styles';
 import styles from './styles';
-
-import constants from "./styles";
 
 interface Props {
     children: React.ReactNode

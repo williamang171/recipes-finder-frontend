@@ -26,7 +26,7 @@ function usePredict() {
             handleError(err);
             setPending(false);
         }
-    }, [setPending, setPredictions, handleError]);
+    }, [setPending, setPredictions, handleError, enqueueSnackbar]);
 
     const predictViaUpload = useCallback(async (formData, options?) => {
         try {
@@ -40,7 +40,7 @@ function usePredict() {
             handleError(err);
             setPending(false);
         }
-    }, [setPending, setPredictions, handleError])
+    }, [setPending, setPredictions, handleError, enqueueSnackbar])
 
     return {
         predictions,

@@ -9,6 +9,7 @@ import SettingsPage from "pages/SettingsPage";
 import ToggleColorMode from "components/ToggleColorMode";
 import SignUp from "pages/SignUp";
 import SignIn from "pages/SignIn";
+import LinksPage from "pages/LinksPage";
 import { AuthContextProvider } from "contexts/AuthContext"
 import { GlobalLoadingContextProvider } from "contexts/GlobalLoadingContext";
 import GlobalLoader from "components/GlobalLoader";
@@ -30,6 +31,7 @@ function App() {
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/auth/sign-up" element={<SignUp />} />
             <Route path="/auth/sign-in" element={<SignIn />} />
+            <Route path="/links" element={<LinksPage />} />
           </Routes>
         </AuthContextProvider>
       </GlobalLoadingContextProvider>

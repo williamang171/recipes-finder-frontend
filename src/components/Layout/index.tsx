@@ -3,7 +3,6 @@ import { GlobalStyles, useTheme } from "@mui/material";
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
-import { grey } from '@mui/material/colors';
 
 import SideNav from './SideNav';
 import Header from './Header';
@@ -14,12 +13,20 @@ const drawerWidth = 240;
 
 const SidebarGlobalStyles = () => {
     const theme = useTheme();
+    const currentModeIsDark = theme.palette.mode === 'dark';
     return (
         <GlobalStyles
             styles={{
                 ".sidebar-nav-item": {
                     color: "unset",
                     textDecoration: "none",
+                },
+                ".sidebar-nav-item--active": currentModeIsDark ? {} : {
+                    color: theme.palette.primary.dark,
+
+                    '.MuiListItemIcon-root': {
+                        color: theme.palette.primary.dark,
+                    }
                 }
             }}
         />
@@ -85,7 +92,7 @@ export default function ResponsiveDrawer(props: Props) {
             </Box>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+                sx={{ flexGrow: 1, pl: 3, pr: 3, pt: 2, pb: 1, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
                 <ErrorBoundary FallbackComponent={ErrorFallback} >

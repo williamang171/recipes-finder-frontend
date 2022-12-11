@@ -64,49 +64,46 @@ export default function AuthItem(props: Props) {
         </Dialog>
     )
 
-    const logoutOnClick = () => {
-        logout();
+    if (isAuthenticated === false) {
+        return <LoginButton />
     }
 
+    return (
+        <div>
+            <IconButton
+                disabled={isAuthenticated === null}
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+            >
+                {picture ? <Avatar alt="avatar" sx={{
+                    width: 28,
+                    height: 28
+                }} src={picture} /> : <AccountCircle />}
+            </IconButton>
+            <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                <MenuItem onClick={handleOpenModal}>Profile</MenuItem>
+                <MenuItem onClick={logout}>Logout</MenuItem>
+            </Menu>
+            {profileModal}
+        </div>
+    )
 
-    if (isAuthenticated) {
-        return (
-            <div>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleMenu}
-                    color="inherit"
-                >
-                    {picture ? <Avatar alt="avatar" sx={{
-                        width: 28,
-                        height: 28
-                    }} src={picture} /> : <AccountCircle />}
-                </IconButton>
-                <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                >
-                    <MenuItem onClick={handleOpenModal}>Profile</MenuItem>
-                    <MenuItem onClick={logoutOnClick}>Logout</MenuItem>
-                </Menu>
-                {profileModal}
-            </div>
-        )
-    }
-
-    return <LoginButton />
 }

@@ -5,6 +5,12 @@ import { ThemeProvider, createTheme, alpha } from '@mui/material/styles';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
+let preferDarkMode = false;
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    preferDarkMode = true;
+}
+const defaultMode = preferDarkMode ? 'dark' : 'light';
+
 interface Props {
     children: React.ReactNode
 }
@@ -31,7 +37,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 });
 
 export default function ToggleColorMode(props: Props) {
-    const [mode, setMode] = useState<'light' | 'dark'>('light');
+    const [mode, setMode] = useState<'light' | 'dark'>(defaultMode);
     const colorMode = useMemo(
         () => ({
             toggleColorMode: () => {
@@ -42,9 +48,9 @@ export default function ToggleColorMode(props: Props) {
     );
 
     useEffect(() => {
-        const colorMode = localStorage.getItem("colorMode") || "light";
-        if (colorMode === "dark") {
-            setMode("dark");
+        const colorMode = localStorage.getItem("colorMode") || defaultMode;
+        if (colorMode === "dark" || colorMode === 'light') {
+            setMode(colorMode);
         }
     }, [])
 

@@ -10,6 +10,7 @@ import {
     NavLink, useLocation
 } from "react-router-dom";
 import { ListItemButton } from '@mui/material';
+import LinkIcon from '@mui/icons-material/Link';
 
 const links = [
     {
@@ -35,8 +36,15 @@ const links = [
         key: "settings",
         to: "/settings",
         icon: <SettingsIcon />
+    },
+    {
+        name: "Links",
+        key: "links",
+        to: "/links",
+        icon: <LinkIcon />
     }
 ];
+
 
 export default function SideNav() {
     const location = useLocation();
@@ -46,10 +54,11 @@ export default function SideNav() {
             <Toolbar />
             <List >
                 {links.map((l) => {
+                    const navLinkClassName = location.pathname === l.to ? 'sidebar-nav-item sidebar-nav-item--active' : 'sidebar-nav-item'
                     return (
                         <NavLink
                             end={l.to === "/" ? true : false}
-                            className={'sidebar-nav-item'}
+                            className={navLinkClassName}
                             to={l.to}
                             key={l.key}
                         >
