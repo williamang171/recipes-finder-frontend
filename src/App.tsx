@@ -14,11 +14,12 @@ import { AuthContextProvider } from "contexts/AuthContext"
 import { GlobalLoadingContextProvider } from "contexts/GlobalLoadingContext";
 import GlobalLoader from "components/GlobalLoader";
 import LoadCurrentUser from "components/LoadCurrentUser";
+import RequireNotAuth from "components/RequireNotAuth";
 
 function App() {
   return <ToggleColorMode
   >
-    <SnackbarProvider autoHideDuration={1500}>
+    <SnackbarProvider autoHideDuration={2500}>
       <CssBaseline />
       <GlobalLoadingContextProvider>
         <AuthContextProvider>
@@ -29,9 +30,13 @@ function App() {
             <Route path="/finder" element={<FinderPage />} />
             <Route path="/saved-recipes" element={<SavedRecipesPage />} />
             <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/auth/sign-up" element={<SignUp />} />
-            <Route path="/auth/sign-in" element={<SignIn />} />
             <Route path="/links" element={<LinksPage />} />
+
+            <Route element={<RequireNotAuth />} >
+              <Route path="/auth/sign-up" element={<SignUp />} />
+              <Route path="/auth/sign-in" element={<SignIn />} />
+            </Route>
+
           </Routes>
         </AuthContextProvider>
       </GlobalLoadingContextProvider>

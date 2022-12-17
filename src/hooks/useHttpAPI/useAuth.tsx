@@ -80,7 +80,8 @@ function useAuth() {
         user,
         loading,
         loadCurrentUser,
-        isAuthenticated
+        isAuthenticated,
+        setIsAuthenticated
     }
 }
 

@@ -19,12 +19,13 @@ function checkTokenIsExpired(t: string) {
 }
 
 export default function LoadCurrentUser() {
-    const { loadCurrentUser, isAuthenticated, user } = useAuth();
+    const { loadCurrentUser, isAuthenticated, user, setIsAuthenticated } = useAuth();
     const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
         const t = localStorage.getItem("token");
         if (!t) {
+            setIsAuthenticated(false);
             return;
         }
         const tokenIsExpired = checkTokenIsExpired(t);
@@ -32,6 +33,7 @@ export default function LoadCurrentUser() {
         if (tokenIsExpired) {
             enqueueSnackbar("Session expired, please sign in again");
             localStorage.removeItem("token");
+            setIsAuthenticated(false);
             return;
         }
 

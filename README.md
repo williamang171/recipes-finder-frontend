@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Live Demo
-[Demo](https://recipes-finder-fe.netlify.app/)
+[Demo](https://recipes-finder-fe.netlify.app/auth/sign-in)
 
 ## Back End Repository
 https://github.com/williamang171/recipes-finder-backend
