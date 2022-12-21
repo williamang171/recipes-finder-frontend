@@ -1,6 +1,7 @@
 import { useState, useRef, useMemo, useCallback } from "react";
 import { ReCAPTCHA } from "react-google-recaptcha";
 
+const captchaEnabled = process.env.REACT_APP_RECAPTCHA_ON === 'True';
 const siteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY || "";
 
 export default function useGRecaptcha() {
@@ -31,6 +32,7 @@ export default function useGRecaptcha() {
         gRecaptchaRef,
         gRecaptchaValue: value,
         gRecaptchaOnChange: onChange,
-        siteKey
+        siteKey,
+        captchaEnabled
     }
 }

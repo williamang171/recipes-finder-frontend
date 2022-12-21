@@ -25,7 +25,7 @@ export default function InputViaUrl(props: Props) {
     const theme = useTheme();
     const [inputImageUrl, setInputImageUrl] = useState<string | null>("");
     const { setPredictions, imageUrl, setImageUrl } = props;
-    const { gRecaptchaOnChange, siteKey, gRecaptchaHeaders, gRecaptchaRef, gRecaptchaValue, gRecaptchaReset } = useGRecaptcha();
+    const { captchaEnabled, gRecaptchaOnChange, siteKey, gRecaptchaHeaders, gRecaptchaRef, gRecaptchaValue, gRecaptchaReset } = useGRecaptcha();
 
     useEffect(() => {
         setInputImageUrl(imageUrl);
@@ -72,15 +72,17 @@ export default function InputViaUrl(props: Props) {
                 }} variant='outlined' label='Image URL' size="small"
                     onBlur={handleBlur}
                 />
-                <ReCAPTCHA
-                    ref={gRecaptchaRef}
-                    sitekey={siteKey}
-                    onChange={gRecaptchaOnChange}
-                />
+                {captchaEnabled ? <>
+                    <ReCAPTCHA
+                        ref={gRecaptchaRef}
+                        sitekey={siteKey}
+                        onChange={gRecaptchaOnChange}
+                    />
+                    <Box sx={{ mb: 2 }} />
+                </>
+                    : null}
 
-                <Box sx={{ mb: 2 }} />
-
-                <LoadingButton loading={pending} type="submit" disabled={!imageUrl || !gRecaptchaValue} color='primary' variant='contained' size="large">Submit</LoadingButton>
+                <LoadingButton loading={pending} type="submit" disabled={!imageUrl || (captchaEnabled && !gRecaptchaValue)} color='primary' variant='contained' size="large">Submit</LoadingButton>
             </Box>
         </div>
     );
