@@ -1,6 +1,6 @@
 import { useMemo, useEffect, createContext, useState } from "react";
 
-import { grey, blue, blueGrey } from "@mui/material/colors";
+import { grey, blue, blueGrey, deepOrange } from "@mui/material/colors";
 import { ThemeProvider, createTheme, alpha } from '@mui/material/styles';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => { } });
@@ -19,10 +19,10 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 ({
     palette: {
         primary: {
-            ...blue,
-            ...(mode === 'dark' && {
-                main: blue[400],
-            }),
+            main: '#439A97'
+        },
+        secondary: {
+            main: '#D127E0',
         },
         divider: mode === 'dark' ? alpha(blue[100], 0.08) : grey[100],
         primaryDark: blueGrey,

@@ -9,6 +9,7 @@ interface Props {
 
 export default function PredictionsListItem(props: Props) {
     const { name, value = 0, setIngredient, setOpen } = props;
+    const fixed = (value * 100).toFixed(0);
     return <TableRow
         key={name}
         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -16,11 +17,11 @@ export default function PredictionsListItem(props: Props) {
         <TableCell component="th" scope="row">
             {name}
         </TableCell>
-        <TableCell align="right">{value.toFixed(4)}</TableCell>
+        <TableCell align="right">{`${fixed}%`}</TableCell>
         <TableCell align="right" sx={{
             minWidth: "200px"
         }}>
-            <Button variant="outlined" onClick={() => {
+            <Button variant="contained" onClick={() => {
                 setIngredient(name);
                 setOpen(true)
             }} >Find Recipes</Button>

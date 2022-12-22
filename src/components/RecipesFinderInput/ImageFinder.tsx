@@ -18,7 +18,7 @@ export default function ImageFinder(props: ImageFinderProps) {
 
     return (
         <div>
-            <Button sx={{ mb: 1 }} fullWidth variant="outlined" onClick={handleOpen}>
+            <Button sx={{ mb: 1 }} fullWidth color="primary" variant="outlined" onClick={handleOpen}>
                 {description}
             </Button>
             <Dialog

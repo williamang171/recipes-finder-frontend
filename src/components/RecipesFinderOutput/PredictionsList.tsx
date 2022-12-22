@@ -48,9 +48,9 @@ export default function ImageToPredict(props: Props) {
                     <TableBody>
                         {predictions.map((p: Prediction) => (
                             <PredictionsListItem
-                                key={p.name}
-                                name={p.name}
-                                value={p.value}
+                                key={p.label}
+                                name={p.label}
+                                value={p.score}
                                 setIngredient={setSearchQuery}
                                 setOpen={setOpen}
                             />

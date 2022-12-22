@@ -1,6 +1,6 @@
 export interface Prediction {
-    name: string,
-    value: number
+    label: string,
+    score: number
 }
 
 export interface Image {
