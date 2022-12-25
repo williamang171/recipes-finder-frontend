@@ -18,6 +18,9 @@ function usePredict() {
             const res = await axios.post(`${apiBasePath}/`, {
                 url: imageUrl
             }, options);
+            if (res.data.error && res.data.estimated_time) {
+                throw new Error('Model is loading, please try again later.');
+            }
             setPredictions(res.data);
             setPending(false);
             enqueueSnackbar("Predictions made");
@@ -32,6 +35,9 @@ function usePredict() {
         try {
             setPending(true);
             const res = await axios.post(`${apiBasePath}/upload`, formData, options);
+            if (res.data.error && res.data.estimated_time) {
+                throw new Error('Model is loading, please try again later.');
+            }
             setPredictions(res.data);
             setPending(false);
             enqueueSnackbar("Predictions made");

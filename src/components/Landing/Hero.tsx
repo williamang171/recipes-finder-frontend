@@ -9,6 +9,8 @@ export default function Hero() {
     return <Box
         sx={{
             pb: 6,
+            pl: 2,
+            pr: 2
         }}
     >
         <Container maxWidth="sm">

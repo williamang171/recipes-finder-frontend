@@ -16,8 +16,8 @@ export default function RadioSearchType(props: Props) {
                 aria-labelledby="search-recipes-type-radio"
                 name="position"
             >
-                <FormControlLabel value="ingredient" control={<Radio />} label="Search as ingredient" />
                 <FormControlLabel value="mealName" control={<Radio />} label="Search as meal name" />
+                <FormControlLabel value="ingredient" control={<Radio />} label="Search as ingredient" />
             </RadioGroup>
         </FormControl>
     )

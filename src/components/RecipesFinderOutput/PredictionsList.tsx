@@ -36,7 +36,7 @@ export default function ImageToPredict(props: Props) {
         }
 
         return (
-            <TableContainer component={Paper}>
+            <TableContainer >
                 <Table aria-label="simple table" >
                     <TableHead>
                         <TableRow>

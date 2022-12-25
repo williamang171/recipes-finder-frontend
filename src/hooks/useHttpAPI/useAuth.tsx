@@ -64,6 +64,7 @@ function useAuth() {
             }).catch(err => {
                 setLoading(false);
                 handleError(err);
+                setIsAuthenticated(false);
             })
     }, [setLoading, handleError])
 

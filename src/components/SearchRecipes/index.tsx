@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Typography } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
 import Dialog from '@mui/material/Dialog';
 import IconButton from "@mui/material/IconButton";
 import DialogTitle from '@mui/material/DialogTitle';
@@ -20,7 +20,7 @@ interface SearchRecipesProps {
 }
 
 export default function SearchRecipes(props: SearchRecipesProps) {
-    const [searchType, setSearchType] = useState(SEARCH_TYPE.INGREDIENT)
+    const [searchType, setSearchType] = useState(SEARCH_TYPE.MEAL_NAME)
     const { open, setOpen, searchQuery } = props;
     const { getMeals, mealsView, reset: resetUseMealDb, emptyResults } = useMealDb();
 
@@ -60,6 +60,7 @@ export default function SearchRecipes(props: SearchRecipesProps) {
         }
         return null;
     }
+    const Over400 = useMediaQuery('(min-width:400px)');
 
     return (
         <Dialog open={open} onClose={handleClose} sx={{
@@ -67,6 +68,7 @@ export default function SearchRecipes(props: SearchRecipesProps) {
         }}
             maxWidth={'xl'}
             fullWidth
+            fullScreen={Over400 ? false : true}
             PaperProps={{
                 sx: {
                     minHeight: "94%",

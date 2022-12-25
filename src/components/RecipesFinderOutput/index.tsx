@@ -23,7 +23,7 @@ export default function RecipesFinderOutput() {
     })
 
     return (
-        <Box >
+        <Box sx={{ maxWidth: "90vw" }} >
             <Paper sx={{ display: 'flex', alignItems: "center", justifyContent: 'space-between', flexWrap: overLg ? "nowrap" : "wrap" }}>
                 <ImageToPredict imageUrl={imageUrl} />
                 <PredictionsList predictions={predictions} setSearchQuery={setSearchQuery} setOpen={setOpen} />

@@ -5,13 +5,13 @@ import Layout from "components/Layout"
 import { useSnackbar } from "notistack";
 
 export default function SettingsPage() {
-    const [primaryFindMethod, setPrimaryFindMethod] = useState(parseInt(localStorage.getItem("primaryFindMethod") || "0"));
+    const [primaryFindMethod, setPrimaryFindMethod] = useState((localStorage.getItem("primaryFindMethod") || "image-url"));
     const { enqueueSnackbar } = useSnackbar();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPrimaryFindMethod(parseInt(event.target.value));
+        setPrimaryFindMethod((event.target.value));
         localStorage.setItem("primaryFindMethod", event.target.value)
-        enqueueSnackbar("Update successful, the primary method will be selected when you reload the app", {
+        enqueueSnackbar("Setting(s) Updated", {
             autoHideDuration: 3000
         })
     };
@@ -26,9 +26,10 @@ export default function SettingsPage() {
                     onChange={handleChange}
                     name="radio-buttons-group"
                 >
-                    <FormControlLabel value={0} control={<Radio />} label="Image Via URL" />
-                    <FormControlLabel value={1} control={<Radio />} label="Image Via Upload" />
-                    <FormControlLabel value={2} control={<Radio />} label="Text" />
+                    <FormControlLabel value={'image-url'} control={<Radio />} label="Image URL" />
+                    <FormControlLabel value={'image-upload'} control={<Radio />} label="Image Upload" />
+                    <FormControlLabel value={'image-samples'} control={<Radio />} label="Select from samples" />
+                    <FormControlLabel value={'text'} control={<Radio />} label="Text" />
                 </RadioGroup>
             </FormControl>
         </Layout>

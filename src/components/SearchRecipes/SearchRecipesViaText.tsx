@@ -11,7 +11,7 @@ import NoRecipesFound from "./NoRecipesFound";
 export default function SearchRecipesViaText() {
     const [search, setSearch] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
-    const [searchType, setSearchType] = useState(SEARCH_TYPE.INGREDIENT);
+    const [searchType, setSearchType] = useState(SEARCH_TYPE.MEAL_NAME);
     const { getMeals, mealsView, loading, emptyResults } = useMealDb();
 
     useEffect(() => {

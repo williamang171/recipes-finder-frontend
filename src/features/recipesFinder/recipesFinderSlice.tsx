@@ -9,7 +9,7 @@ interface RecipesFinderState {
 }
 
 const initialState: RecipesFinderState = {
-    tab: parseInt(localStorage.getItem("primaryFindMethod") || "0") || 0,
+    tab: 0,
     predictions: [],
     imageUrl: ""
 }

@@ -24,7 +24,7 @@ export default function FileUpload(props: Props) {
     const { predictViaUpload, pending } = usePredict();
     const { setPredictions, setImageUrl } = props;
     const theme = useTheme();
-    const { gRecaptchaOnChange, gRecaptchaRef, gRecaptchaValue, siteKey, gRecaptchaReset, gRecaptchaHeaders } = useGRecaptcha();
+    const { gRecaptchaOnChange, gRecaptchaRef, gRecaptchaValue, siteKey, gRecaptchaReset, gRecaptchaHeaders, captchaEnabled } = useGRecaptcha();
 
     const [file, setFile] = useState<Blob | null>(null);
     const [fileName, setFileName] = useState("");
@@ -72,14 +72,16 @@ export default function FileUpload(props: Props) {
             </div>
         </Box>
 
-        <ReCAPTCHA
-            sitekey={siteKey}
-            onChange={gRecaptchaOnChange}
-            ref={gRecaptchaRef}
-        />
+        {captchaEnabled ? <>
+            <ReCAPTCHA
+                ref={gRecaptchaRef}
+                sitekey={siteKey}
+                onChange={gRecaptchaOnChange}
+            />
+            <Box sx={{ mb: 2 }} />
+        </>
+            : null}
 
-        <Box sx={{ mb: 2 }} />
-
-        <LoadingButton loading={pending} size="large" disabled={!file || !gRecaptchaValue} variant='contained' onClick={onSubmit}>Submit</LoadingButton>
+        <LoadingButton loading={pending} size="large" disabled={!file || (captchaEnabled && !gRecaptchaValue)} variant='contained' onClick={onSubmit}>Submit</LoadingButton>
     </Box>
 }
