@@ -4,27 +4,32 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 export default function Hero() {
+    const theme = useTheme();
+    const overSm = useMediaQuery(theme.breakpoints.up('sm'));
+
     return <Box
         sx={{
             pb: 6,
-            pl: 2,
-            pr: 2
+            pl: 3,
+            pr: 3
         }}
     >
         <Container maxWidth="sm">
             <Typography
                 component="h1"
-                variant="h3"
+                variant={overSm ? "h3" : 'h4'}
                 align="center"
                 color="text.primary"
                 gutterBottom
             >
-                Find Recipes with Images or Text Based Queries
+                Find Recipes with Image or Text
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                Find recipes by providing image url, uploading image, or providing text based queries and filtering
+                Find recipes by providing image urls, uploading images, or providing text based queries
             </Typography>
             <Stack
                 sx={{ pt: 4 }}
