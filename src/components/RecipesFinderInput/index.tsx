@@ -66,7 +66,7 @@ export default function RecipesFinderInput() {
                     <Tab sx={tabItemStyle} disableTouchRipple icon={<TextFieldsIcon />} iconPosition='start' label="Text" />
                 </Tabs>
             </Box>
-            <Box sx={{ mt: 3 }} />
+            <Box sx={{ mt: 1 }} />
             <ErrorBoundary FallbackComponent={ErrorFallback} >
                 {tab === 0 && <InputViaImage setImageUrl={dispatchSetImageUrl} imageUrl={imageUrl} setPredictions={dispatchSetPredictions} />}
                 {tab === 1 && <SearchRecipesViaText />}

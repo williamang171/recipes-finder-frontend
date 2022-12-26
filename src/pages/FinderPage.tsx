@@ -1,7 +1,6 @@
 import { Box } from "@mui/material"
 import ErrorFallback from "components/ErrorFallback";
 
-import NewUserAlert from "components/NewUserAlert";
 import Layout from "components/Layout"
 import RecipesFinderInput from "components/RecipesFinderInput";
 import RecipesFinderOutput from "components/RecipesFinderOutput";
@@ -16,11 +15,11 @@ export default function FinderPage() {
     });
 
     return <Layout>
-        <NewUserAlert />
+        {/* <NewUserAlert /> */}
         <RecipesFinderInput />
         <Box sx={{ mb: 4 }} />
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-            {tab === 2 ? null : <RecipesFinderOutput />}
+            {tab === 1 ? null : <RecipesFinderOutput />}
         </ErrorBoundary>
     </Layout>
 } 

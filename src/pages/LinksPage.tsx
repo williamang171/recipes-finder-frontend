@@ -15,7 +15,15 @@ const links = [
     },
     {
         title: 'API Documentation',
-        href: 'https://fastapi-production-bb29.up.railway.app/docs'
+        href: 'https://rf-backend-h62gfkc3pq-uc.a.run.app/docs'
+    },
+    {
+        title: "Food Recognition Model",
+        href: 'https://huggingface.co/william7642/my_awesome_food_model',
+    },
+    {
+        title: "Food Recognition Model Standalone Demo",
+        href: "https://huggingface.co/spaces/william7642/food-model"
     }
 ]
 
