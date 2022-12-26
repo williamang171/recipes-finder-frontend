@@ -7,12 +7,15 @@ import useGRecaptcha from "hooks/useGRecaptcha";
 import { Prediction } from "interfaces/types";
 
 import ImageFinderSample from "./ImageFinderSample";
+import ImageFinderUnsplash from "./ImageFinderUnsplash";
 
 interface Props {
     setPredictions(predictions: Array<Prediction>): any,
     imageUrl: string | null,
     setImageUrl(imageUrl: string): any
 }
+
+const unsplash_enabled = process.env.REACT_APP_UNSPLASH_ENABLE
 
 const defaultImageUrl = 'https://images.unsplash.com/photo-1637361973734-5faf9b1e923e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
 
@@ -51,7 +54,8 @@ export default function InputViaUrl(props: Props) {
             }}>
                 <ImageFinderSample setImageUrl={setImageUrl} />
                 <Box sx={{ mr: 1 }} />
-                {/* <ImageFinderUnsplash setImageUrl={setImageUrl} /> */}
+                {unsplash_enabled === 'True' ? <ImageFinderUnsplash setImageUrl={setImageUrl} /> : null}
+
             </div>
 
             <Box onSubmit={handleSubmit} component="form" sx={{ mt: 2 }}>
