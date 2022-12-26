@@ -9,7 +9,7 @@ interface Props {
 
 export default function PredictionsListItem(props: Props) {
     const { name, value = 0, setIngredient, setOpen } = props;
-    const fixed = (value * 100).toFixed(0);
+    const fixed = (value * 100).toFixed(2);
     return <TableRow
         key={name}
         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

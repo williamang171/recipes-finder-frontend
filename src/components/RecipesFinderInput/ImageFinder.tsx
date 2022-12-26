@@ -27,6 +27,7 @@ export default function ImageFinder(props: ImageFinderProps) {
                     // minHeight: "80vh"
                 }}
                 fullWidth
+                maxWidth={'md'}
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"

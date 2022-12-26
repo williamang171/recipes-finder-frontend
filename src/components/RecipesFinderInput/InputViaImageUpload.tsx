@@ -57,19 +57,19 @@ export default function FileUpload(props: Props) {
     }
 
     return <Box  >
-        <Box sx={{ display: "flex", alignItems: "flex-end", mb: 2 }}>
+        <Box sx={{ display: "flex", alignItems: "flex-end" }}>
             <label htmlFor="file-upload">
-                <Input accept="image/*" id="file-upload" type="file" onChange={handleChange} />
+                <Input accept="image/x-png,image/jpeg" id="file-upload" type="file" onChange={handleChange} />
                 <Button variant="outlined" component="span" sx={{
                     width: 200
                 }} startIcon={<FileUploadIcon />}>
-                    Upload
+                    Choose File
                 </Button>
             </label>
+        </Box>
 
-            <div style={{ display: "block", marginLeft: "12px" }}>
-                {fileName}
-            </div>
+        <Box sx={{ mb: 2 }}>
+            {fileName}
         </Box>
 
         {captchaEnabled ? <>
