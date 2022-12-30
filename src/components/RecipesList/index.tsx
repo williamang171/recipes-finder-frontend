@@ -25,15 +25,14 @@ export default function RecipesList(props: Props) {
 
     return (
         <Box sx={{ position: "relative" }}>
-
             <Grid container spacing={{ xs: 2, sm: 2, md: 2, lg: 2, xl: 2 }}
             >
                 {recipes.map((r, i) => {
                     return (
-                        <Grid item xs={12} sm={12} md={6} lg={4} xl={3} key={i} sx={belowSm ? {
+                        <Grid item xs={12} sm={12} md={6} lg={6} xl={4} key={i} sx={belowSm ? {
                             maxWidth: "calc(100vw - 48px)"
                         } : {}}>
-                            <RecipeListItem extra={listItemExtra} name={r.name} url={r.url} imageUrl={r.image_url} mealDbId={r.mealdb_id} id={r.id} />
+                            <RecipeListItem extra={listItemExtra} redditPostId={r.reddit_post_id} title={r.title || ""} url={r.url} imageUrl={r.image_url} mealDbId={r.mealdb_id} id={r.id} sourceType={r.source_type || ""} />
                         </Grid>
                     )
                 })}

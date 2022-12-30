@@ -17,7 +17,6 @@ interface Props {
 
 const unsplash_enabled = process.env.REACT_APP_UNSPLASH_ENABLE
 
-const defaultImageUrl = 'https://images.unsplash.com/photo-1637361973734-5faf9b1e923e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
 
 export default function InputViaUrl(props: Props) {
     const { pending, predictViaUrl } = usePredict()
@@ -28,11 +27,6 @@ export default function InputViaUrl(props: Props) {
     useEffect(() => {
         setInputImageUrl(imageUrl);
     }, [imageUrl])
-
-    useEffect(() => {
-        setImageUrl(defaultImageUrl);
-    }, [setImageUrl]);
-
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -59,8 +53,6 @@ export default function InputViaUrl(props: Props) {
             </div>
 
             <Box onSubmit={handleSubmit} component="form" sx={{ mt: 2 }}>
-
-
                 <LoadingButton loading={pending} type="submit" disabled={!imageUrl || (captchaEnabled && !gRecaptchaValue)} color='primary' variant='contained' size="large">Submit</LoadingButton>
             </Box>
         </div>

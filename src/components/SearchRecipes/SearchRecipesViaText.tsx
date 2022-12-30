@@ -2,32 +2,25 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { Box, TextField } from "@mui/material";
 import debounce from "lodash/debounce";
 
-import useMealDb, { SEARCH_TYPE } from "hooks/useHttpAPI/useMealDb";
 import RecipesList from "components/RecipesList";
-import RadioSearchType from "./RadioSearchType";
 import useListItemExtraBookmark from "./useListItemExtraBookmark";
-import NoRecipesFound from "./NoRecipesFound";
+import useRecipeIdeas from "hooks/useHttpAPI/useRecipeIdeas";
 
 export default function SearchRecipesViaText() {
     const [search, setSearch] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
-    const [searchType, setSearchType] = useState(SEARCH_TYPE.MEAL_NAME);
-    const { getMeals, mealsView, loading, emptyResults } = useMealDb();
+    const { getRecipeIdeas, data: recipeIdeas } = useRecipeIdeas()
 
     useEffect(() => {
-        getMeals({
-            searchQuery: searchQuery,
-            searchType: searchType
-        })
-    }, [searchQuery, searchType, getMeals])
+        if (!searchQuery) {
+            return;
+        }
+        getRecipeIdeas(searchQuery)
+    }, [searchQuery, getRecipeIdeas])
 
     const { listItemExtra } = useListItemExtraBookmark({
         fetchSavedRecipes: true
     });
-
-    const handleRadioChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchType(e.target.value);
-    }, []);
 
     const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
@@ -47,9 +40,6 @@ export default function SearchRecipesViaText() {
     }, [handleChange, debouncedUpdateSearchQuery]);
 
     const renderEmpty = () => {
-        if (emptyResults) {
-            return <NoRecipesFound searchQuery={searchQuery} searchType={searchType} />
-        }
         return null;
     }
 
@@ -63,8 +53,8 @@ export default function SearchRecipesViaText() {
         }} variant='outlined' label='Search Query' size="small"
             autoFocus
         />
-        <RadioSearchType onChange={handleRadioChange} value={searchType} />
-        <RecipesList empty={renderEmpty} recipes={mealsView} listItemExtra={listItemExtra} />
+
+        <RecipesList empty={renderEmpty} recipes={recipeIdeas} listItemExtra={listItemExtra} />
         <Box sx={{ mb: 2 }} />
     </Box>
 }

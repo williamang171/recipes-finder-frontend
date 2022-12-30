@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import { ListItemButton } from '@mui/material';
 import LinkIcon from '@mui/icons-material/Link';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer'
 
 const links = [
     {
@@ -42,6 +43,12 @@ const links = [
         key: "links",
         to: "/links",
         icon: <LinkIcon />
+    },
+    {
+        name: "FAQ",
+        keys: "faq",
+        to: "/faq",
+        icon: <QuestionAnswerIcon />
     }
 ];
 

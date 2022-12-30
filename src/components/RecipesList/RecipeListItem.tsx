@@ -9,6 +9,14 @@ import Link from "@mui/material/Link";
 
 import { Recipe } from "interfaces/types";
 const StyledTypography = styled(Typography)(({ theme }) => ({
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: 'vertical',
+    whiteSpace: 'break-spaces',
+    minHeight: 44,
+
     'a': {
         textDecoration: "none",
         color: theme.palette.primary.main
@@ -22,14 +30,16 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
 interface Props {
     url: string,
     imageUrl: string,
-    name: string,
+    sourceType: string,
+    title: string,
     mealDbId?: string,
     id?: number,
+    redditPostId?: string,
     extra?(recipe: Recipe): any
 }
 
 export default function RecipeListItem(props: Props) {
-    const { url, imageUrl, name, extra, mealDbId, id } = props;
+    const { url, imageUrl, title, extra, mealDbId, id, redditPostId, sourceType } = props;
 
     return (
         <Card sx={{
@@ -41,32 +51,34 @@ export default function RecipeListItem(props: Props) {
             <a target="_blank" rel="noreferrer" href={url}>
                 <CardMedia
                     component="img"
-                    sx={{ height: 140, width: "auto", maxHeight: 140 }}
-                    image={imageUrl}
-                    alt={name}
+                    sx={{ height: 100, width: "auto", maxHeight: 100, maxWidth: 100 }}
+                    image={(!imageUrl ? '/recipe-placeholder.png' : imageUrl)}
+                    alt={title}
                 />
             </a>
 
             <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, maxWidth: '100%', width: "100%", overflow: 'hidden' }}>
-                <CardContent sx={{ flex: '1 0 auto', overflow: 'hidden' }}>
-                    <StyledTypography noWrap variant="h6" sx={{
+                <CardContent sx={{ flex: '1 0 auto', overflow: 'hidden', p: 1.5, pb: 0 }} >
+                    <StyledTypography noWrap variant="subtitle2" sx={{
                         color: (theme) => theme.palette.primary.main
                     }}
                     >
-                        <Link target="_blank" rel="noreferrer" href={`https://themealdb.com/meal.php?c=${mealDbId}`}>
-                            {name}
+                        <Link target="_blank" rel="noreferrer" href={url}>
+                            {title}
                         </Link>
                     </StyledTypography>
-                    <Typography variant="subtitle1" color="text.secondary" >
+                    {/* {mealDbId ? <Typography variant="subtitle1" color="text.secondary" >
                         Meal ID: {mealDbId}
-                    </Typography>
+                    </Typography> : null} */}
                 </CardContent>
                 {typeof extra === 'function' ? extra({
                     url,
                     image_url: imageUrl,
-                    name,
+                    title,
                     mealdb_id: mealDbId,
-                    id
+                    reddit_post_id: redditPostId,
+                    id,
+                    source_type: sourceType
                 }) : null}
             </Box>
 

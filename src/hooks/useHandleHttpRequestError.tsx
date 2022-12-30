@@ -19,8 +19,14 @@ export default function useHandleHttpRequestError() {
             // return;
         }
         if (data && data.detail) {
-            enqueueSnackbar(data.detail);
-            return;
+            if (typeof data.detail === 'string') {
+                enqueueSnackbar(data.detail);
+                return;
+            }
+            if (typeof data.detail.error === 'string') {
+                enqueueSnackbar(data.detail.error);
+                return;
+            }
         }
         if (err && err.message) {
             enqueueSnackbar(err.message);

@@ -8,9 +8,7 @@ import Box from '@mui/material/Box';
 import usePredict from "hooks/useHttpAPI/usePredict";
 import useGRecaptcha from "hooks/useGRecaptcha";
 import { Prediction } from "interfaces/types";
-
-import ImageFinderSample from "./ImageFinderSample";
-import ImageFinderUnsplash from "./ImageFinderUnsplash";
+import { defaultImage } from "data/sample-images";
 
 interface Props {
     setPredictions(predictions: Array<Prediction>): any,
@@ -18,7 +16,6 @@ interface Props {
     setImageUrl(imageUrl: string): any
 }
 
-const defaultImageUrl = 'https://images.unsplash.com/photo-1637361973734-5faf9b1e923e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
 
 export default function InputViaUrl(props: Props) {
     const { pending, predictViaUrl } = usePredict()
@@ -32,7 +29,7 @@ export default function InputViaUrl(props: Props) {
     }, [imageUrl])
 
     useEffect(() => {
-        setImageUrl(defaultImageUrl);
+        setImageUrl(defaultImage.imgForSubmit);
     }, [setImageUrl]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

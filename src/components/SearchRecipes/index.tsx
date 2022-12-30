@@ -8,8 +8,9 @@ import DialogContent from '@mui/material/DialogContent';
 import CloseIcon from "@mui/icons-material/Close"
 
 import RecipesList from "components/RecipesList";
-import useMealDb, { SEARCH_TYPE } from "hooks/useHttpAPI/useMealDb";
-import RadioSearchType from "./RadioSearchType";
+import { SEARCH_TYPE } from "hooks/useHttpAPI/useMealDb";
+import useRecipeIdeas from "hooks/useHttpAPI/useRecipeIdeas";
+// import RadioSearchType from "./RadioSearchType";
 import useListItemExtraBookmark from "./useListItemExtraBookmark";
 import NoRecipesFound from "./NoRecipesFound";
 
@@ -22,42 +23,28 @@ interface SearchRecipesProps {
 export default function SearchRecipes(props: SearchRecipesProps) {
     const [searchType, setSearchType] = useState(SEARCH_TYPE.MEAL_NAME)
     const { open, setOpen, searchQuery } = props;
-    const { getMeals, mealsView, reset: resetUseMealDb, emptyResults } = useMealDb();
+    const { getRecipeIdeas, data: recipeIdeas, resetRecipeIdeas } = useRecipeIdeas();
 
     const { listItemExtra } = useListItemExtraBookmark({
-        fetchSavedRecipes: open
+        fetchSavedRecipes: true
     });
 
     const handleClose = () => {
         setOpen(false);
-        resetUseMealDb();
+        resetRecipeIdeas();
     }
-
-    const fetchMeals = useCallback(async ({ searchType, searchQuery }) => {
-        await getMeals({
-            searchQuery,
-            searchType
-        });
-    }, [getMeals])
 
     useEffect(() => {
         if (!open || !searchQuery || !searchType) {
             return;
         }
-        fetchMeals({
-            searchQuery,
-            searchType
-        });
-    }, [open, searchQuery, searchType, fetchMeals]);
-
-    const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchType(e.target.value);
-    };
+        getRecipeIdeas(searchQuery);
+    }, [open, searchQuery, searchType, getRecipeIdeas]);
 
     const renderEmpty = () => {
-        if (emptyResults) {
-            return <NoRecipesFound searchQuery={searchQuery} searchType={searchType} />
-        }
+        // if (emptyResults) {
+        //     return <NoRecipesFound searchQuery={searchQuery} searchType={searchType} />
+        // }
         return null;
     }
     const Over400 = useMediaQuery('(min-width:400px)');
@@ -96,11 +83,8 @@ export default function SearchRecipes(props: SearchRecipesProps) {
                 </IconButton>
             </DialogTitle>
             <DialogContent>
-                <RadioSearchType onChange={handleRadioChange} value={searchType} />
-                <RecipesList empty={renderEmpty} recipes={mealsView} listItemExtra={listItemExtra} />
-
+                <RecipesList empty={renderEmpty} recipes={recipeIdeas} listItemExtra={listItemExtra} />
             </DialogContent>
         </Dialog>
-
     )
 }

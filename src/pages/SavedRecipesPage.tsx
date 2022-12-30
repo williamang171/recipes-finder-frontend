@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useContext } from "react";
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, Tooltip } from "@mui/material";
 import Alert from '@mui/material/Alert';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -26,13 +26,15 @@ export default function SavedRecipesPage() {
 
     const listItemExtra = useCallback((recipe: Recipe) => {
         return (
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', pl: 1, pb: 1, mr: 1 }}>
-                <IconButton onClick={() => {
-                    handleDeleteClick(recipe.id)
-                }}
-                >
-                    <DeleteIcon fontSize='medium' />
-                </IconButton>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', pl: 1, pb: 0.2, mr: 1 }}>
+                <Tooltip title="Remove recipe">
+                    <IconButton onClick={() => {
+                        handleDeleteClick(recipe.id)
+                    }}
+                    >
+                        <DeleteIcon fontSize='medium' />
+                    </IconButton>
+                </Tooltip>
             </Box>
         )
     }, [handleDeleteClick]);

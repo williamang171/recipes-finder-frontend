@@ -32,8 +32,13 @@ const ListItemExtraBookmarkIcon = React.memo((props: ListItemExtraBookmarkIconPr
     const { found, isAuthenticated } = props;
     if (isAuthenticated) {
         return found ?
-            <BookmarkIcon fontSize='medium' /> :
-            <BookmarkBorderIcon fontSize='medium' />
+            <Tooltip title="Remove recipe">
+                <BookmarkIcon fontSize='medium' />
+            </Tooltip>
+            :
+            <Tooltip title="Save recipe">
+                <BookmarkBorderIcon fontSize='medium' />
+            </Tooltip>
     }
     return <Tooltip title="Please sign in to save the recipe">
         <BookmarkBorderIcon fontSize='medium' />
@@ -42,6 +47,16 @@ const ListItemExtraBookmarkIcon = React.memo((props: ListItemExtraBookmarkIconPr
 
 interface Props {
     fetchSavedRecipes: boolean
+}
+
+function generateSavedRecipesMap(savedRecipes: Array<Recipe>, key: 'reddit_post_id' | 'mealdb_id') {
+    const obj: Record<string, Recipe> = {};
+    savedRecipes.forEach((r: Recipe) => {
+        if (r[key]) {
+            obj[r[key] || ""] = r
+        }
+    });
+    return obj;
 }
 
 export default function useListItemExtraBookmark(props: Props) {
@@ -56,20 +71,24 @@ export default function useListItemExtraBookmark(props: Props) {
     }, [getSavedRecipes, isAuthenticated, fetchSavedRecipes]);
 
     const savedRecipesMapByMealId = useMemo(() => {
-        const obj: Record<string, Recipe> = {};
-        savedRecipes.forEach((r: Recipe) => {
-            if (r.mealdb_id) {
-                obj[r.mealdb_id] = r
-            }
-        });
-        return obj;
+        return generateSavedRecipesMap(savedRecipes, 'mealdb_id')
     }, [savedRecipes]);
 
+    const savedRecipesByRedditPostId = useMemo(() => {
+        return generateSavedRecipesMap(savedRecipes, 'reddit_post_id')
+    }, [savedRecipes])
+
+    const findRecipe = useCallback((recipe: Recipe) => {
+        const foundViaMealDbId = recipe.mealdb_id ? savedRecipesMapByMealId[recipe.mealdb_id] : false;
+        const foundViaRedditPostId = recipe.reddit_post_id ? savedRecipesByRedditPostId[recipe.reddit_post_id] : false;
+        return foundViaMealDbId || foundViaRedditPostId || false;
+    }, [savedRecipesMapByMealId, savedRecipesByRedditPostId])
+
     const listItemExtra = useCallback((recipe: Recipe) => {
-        const found = recipe.mealdb_id ? savedRecipesMapByMealId[recipe.mealdb_id] : false;
+        const found = findRecipe(recipe);
 
         return (
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', pl: 1, pb: 1, mr: 1 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', pl: 1, pb: 0.2, mr: 1 }}>
                 <StyledIconButton isAuthenticated={isAuthenticated || false} onClick={() => {
                     if (!isAuthenticated) {
                         return;
@@ -85,7 +104,7 @@ export default function useListItemExtraBookmark(props: Props) {
                 </StyledIconButton>
             </Box>
         )
-    }, [isAuthenticated, savedRecipesMapByMealId, createRecipe, removeRecipe])
+    }, [isAuthenticated, savedRecipesMapByMealId, createRecipe, removeRecipe, findRecipe])
 
     return {
         listItemExtra,

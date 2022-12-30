@@ -1,4 +1,7 @@
-import { TableRow, TableCell, Button } from "@mui/material";
+import { TableRow, TableCell, Button, IconButton } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from '@mui/material/styles';
+import SearchIcon from '@mui/icons-material/Search';
 
 interface Props {
     name: string,
@@ -10,6 +13,9 @@ interface Props {
 export default function PredictionsListItem(props: Props) {
     const { name, value = 0, setIngredient, setOpen } = props;
     const fixed = (value * 100).toFixed(2);
+    const theme = useTheme();
+    const overSm = useMediaQuery(theme.breakpoints.up('sm'));
+
     return <TableRow
         key={name}
         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -19,12 +25,17 @@ export default function PredictionsListItem(props: Props) {
         </TableCell>
         <TableCell align="right">{`${fixed}%`}</TableCell>
         <TableCell align="right" sx={{
-            minWidth: "200px"
+            minWidth: overSm ? "200px" : "unset"
         }}>
-            <Button variant="contained" onClick={() => {
+            {overSm ? <Button variant="contained" onClick={() => {
                 setIngredient(name);
                 setOpen(true)
-            }} >Find Recipes</Button>
+            }} >Find Recipes</Button> : <Button onClick={() => {
+                setIngredient(name);
+                setOpen(true)
+            }} color="primary" variant="contained" >
+                <SearchIcon />
+            </Button>}
         </TableCell>
     </TableRow>
 }

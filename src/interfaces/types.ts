@@ -14,10 +14,13 @@ export interface Image {
 
 export interface Recipe {
     id?: number;
-    name: string;
+    name?: string;
     url: string;
     image_url: string;
     mealdb_id?: string;
+    reddit_post_id?: string;
+    source_type?: string;
+    title: string;
 }
 
 export interface User {
