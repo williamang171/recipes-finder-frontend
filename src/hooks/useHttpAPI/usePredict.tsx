@@ -31,10 +31,10 @@ function usePredict() {
                     const data = response.data || {};
                     if (data && data.detail) {
                         if (data.detail.error && data.detail.estimated_time) {
-                            const estimated_time = Math.max(data.detail.estimated_time - ((retryCount - 1) * 5), 1)
+                            const estimated_time = Math.max(data.detail.estimated_time - ((retryCount - 1) * 8), 1)
                             const msg = `Model is loading (estimated time: ${estimated_time} ${estimated_time === 1 ? `second` : 'seconds'}), retrying...`
                             enqueueSnackbar(msg, {
-                                autoHideDuration: 6000,
+                                autoHideDuration: 8000,
                             });
                             return;
                         }
@@ -43,7 +43,7 @@ function usePredict() {
             },
             retryDelay: (retryCount: number) => {
                 console.log(`retry attempt: ${retryCount}`);
-                return 6000; // time interval between retries
+                return 8000; // time interval between retries
             },
         }
     }, [enqueueSnackbar])

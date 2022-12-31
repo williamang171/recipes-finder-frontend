@@ -11,7 +11,7 @@ export default function SettingsPage() {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPrimaryFindMethod((event.target.value));
         localStorage.setItem("primaryFindMethod", event.target.value)
-        enqueueSnackbar("Setting(s) Updated", {
+        enqueueSnackbar("Settings Updated", {
             autoHideDuration: 3000
         })
     };
