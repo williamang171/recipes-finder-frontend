@@ -9,8 +9,8 @@ import Layout from "components/Layout";
 
 const faqs = [
     {
-        question: 'What are the sources used for querying the recipes?',
-        answer: 'The recipes come from https://www.themealdb.com/ and various reddit subreddits including r/recipes, r/easyrecipes, and r/TopSecretRecipes'
+        question: 'How do the APIs find the recipes?',
+        answer: 'The recipes are queried from https://www.themealdb.com/ and various reddit subreddits including r/recipes, r/easyrecipes, and r/TopSecretRecipes'
     },
 ]
 
