@@ -26,7 +26,7 @@ export default function SavedRecipesPage() {
 
     const listItemExtra = useCallback((recipe: Recipe) => {
         return (
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', pl: 1, pb: 0.2, mr: 1 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', pl: 1, pb: 0.5, mr: 0.5 }}>
                 <Tooltip title="Remove recipe">
                     <IconButton onClick={() => {
                         handleDeleteClick(recipe.id)

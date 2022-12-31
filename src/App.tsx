@@ -16,6 +16,7 @@ import { GlobalLoadingContextProvider } from "contexts/GlobalLoadingContext";
 import GlobalLoader from "components/GlobalLoader";
 import LoadCurrentUser from "components/LoadCurrentUser";
 import RequireNotAuth from "components/RequireNotAuth";
+import RequireAuth from "components/RequireAuth";
 
 function App() {
   return <ToggleColorMode
@@ -28,12 +29,13 @@ function App() {
           <GlobalLoader />
           <Routes>
             <Route path="/" element={<IndexPage />} />
-            <Route path="/finder" element={<FinderPage />} />
-            <Route path="/saved-recipes" element={<SavedRecipesPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/links" element={<LinksPage />} />
-            <Route path="/faq" element={<FAQPage />} />
-
+            <Route element={<RequireAuth />}>
+              <Route path="/finder" element={<FinderPage />} />
+              <Route path="/saved-recipes" element={<SavedRecipesPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/links" element={<LinksPage />} />
+              <Route path="/faq" element={<FAQPage />} />
+            </Route>
             <Route element={<RequireNotAuth />} >
               <Route path="/auth/sign-up" element={<SignUp />} />
               <Route path="/auth/sign-in" element={<SignIn />} />

@@ -5,6 +5,7 @@ import axios from "configs/axios-instance";
 import useHandleHttpRequestError from '../useHandleHttpRequestError';
 import { AxiosError } from "axios";
 import { GlobalLoadingContext } from "contexts/GlobalLoadingContext";
+import { useAuthHeaderOptions } from "hooks/useAuthHeaderOptions";
 
 const apiBasePath = "api/v1/predict";
 
@@ -14,6 +15,8 @@ function usePredict() {
     const [pending, setPending] = useState(false);
     const { setLoading } = useContext(GlobalLoadingContext);
     const { enqueueSnackbar } = useSnackbar();
+
+    const getAuthHeaderOptions = useAuthHeaderOptions();
 
     useEffect(() => {
         setLoading(pending);
@@ -52,6 +55,7 @@ function usePredict() {
                 url: imageUrl
             }, {
                 ...options,
+                ...getAuthHeaderOptions(),
                 'axios-retry': axiosRetryConfig
             });
             setPredictions(res.data);
@@ -62,13 +66,14 @@ function usePredict() {
             handleError(err);
             setPending(false);
         }
-    }, [setPending, setPredictions, handleError, enqueueSnackbar, axiosRetryConfig]);
+    }, [setPending, setPredictions, handleError, enqueueSnackbar, axiosRetryConfig, getAuthHeaderOptions]);
 
     const predictViaUpload = useCallback(async (formData, options?) => {
         try {
             setPending(true);
             const res = await axios.post(`${apiBasePath}/upload`, formData, {
                 ...options,
+                ...getAuthHeaderOptions(),
                 'axios-retry': axiosRetryConfig
             });
 
@@ -80,7 +85,7 @@ function usePredict() {
             handleError(err);
             setPending(false);
         }
-    }, [setPending, setPredictions, handleError, enqueueSnackbar, axiosRetryConfig])
+    }, [setPending, setPredictions, handleError, enqueueSnackbar, axiosRetryConfig, getAuthHeaderOptions])
 
     return {
         predictions,

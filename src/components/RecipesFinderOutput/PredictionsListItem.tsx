@@ -30,12 +30,12 @@ export default function PredictionsListItem(props: Props) {
             {overSm ? <Button variant="contained" onClick={() => {
                 setIngredient(name);
                 setOpen(true)
-            }} >Find Recipes</Button> : <Button onClick={() => {
+            }} >Find Recipes</Button> : <IconButton color="primary" onClick={() => {
                 setIngredient(name);
                 setOpen(true)
-            }} color="primary" variant="contained" >
+            }}   >
                 <SearchIcon />
-            </Button>}
+            </IconButton>}
         </TableCell>
     </TableRow>
 }

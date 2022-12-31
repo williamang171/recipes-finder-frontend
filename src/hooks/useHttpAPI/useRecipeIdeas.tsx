@@ -12,21 +12,11 @@ function useRecipeIdeas() {
     const [data, setData] = useState<Array<Recipe>>([]);
     // const [pending, setPending] = useState(false);
     const { setLoading, loading } = useContext(GlobalLoadingContext);
-    console.log(loading)
-
-    const getOptions = useCallback(() => {
-        const t = localStorage.getItem("token");
-        return {
-            headers: {
-                authorization: `Bearer ${t}`
-            }
-        }
-    }, []);
 
     const getRecipeIdeas = useCallback(async (q: string) => {
         setLoading(true);
         // const options = await getOptions();
-        axios.get(`${apiBasePath}/async?q=${q}`, getOptions())
+        axios.get(`${apiBasePath}/async?q=${q}`)
             .then((res) => {
                 setData(res.data)
                 setLoading(false);
@@ -34,7 +24,7 @@ function useRecipeIdeas() {
                 setLoading(false);
                 handleError(err);
             })
-    }, [getOptions, setLoading, handleError])
+    }, [setLoading, handleError])
 
     const resetRecipeIdeas = useCallback(() => {
         setData([]);

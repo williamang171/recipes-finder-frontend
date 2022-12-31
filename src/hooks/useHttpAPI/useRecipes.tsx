@@ -5,6 +5,7 @@ import { Recipe } from "interfaces/types";
 import { useSnackbar } from 'notistack';
 import useHandleHttpRequestError from 'hooks/useHandleHttpRequestError';
 import { GlobalLoadingContext } from "contexts/GlobalLoadingContext";
+import { useAuthHeaderOptions } from "hooks/useAuthHeaderOptions";
 
 const apiBasePath = "/api/v1/recipes";
 
@@ -15,18 +16,11 @@ function useRecipes() {
     // const [pending, setPending] = useState(false);
     const { setLoading } = useContext(GlobalLoadingContext);
 
-    const getOptions = useCallback(() => {
-        const t = localStorage.getItem("token");
-        return {
-            headers: {
-                authorization: `Bearer ${t}`
-            }
-        }
-    }, []);
+    const getAuthHeaderOptions = useAuthHeaderOptions();
 
     const createRecipe = useCallback(async (values: Recipe) => {
         setLoading(true);
-        axios.post(`${apiBasePath}/`, values, getOptions())
+        axios.post(`${apiBasePath}/`, values, getAuthHeaderOptions())
             .then((res) => {
                 const newRecipes = [
                     ...recipes,
@@ -39,11 +33,11 @@ function useRecipes() {
                 setLoading(false);
                 handleError(err);
             })
-    }, [getOptions, recipes, enqueueSnackbar, setLoading, handleError])
+    }, [getAuthHeaderOptions, recipes, enqueueSnackbar, setLoading, handleError])
 
     const removeRecipe = useCallback(async (id) => {
         setLoading(true);
-        axios.delete(`${apiBasePath}/${id}`, getOptions())
+        axios.delete(`${apiBasePath}/${id}`, getAuthHeaderOptions())
             .then(() => {
                 const newRecipes = recipes.filter((r) => {
                     return r.id !== id;
@@ -55,12 +49,12 @@ function useRecipes() {
                 setLoading(false);
                 handleError(err);
             })
-    }, [getOptions, recipes, enqueueSnackbar, setLoading, handleError])
+    }, [getAuthHeaderOptions, recipes, enqueueSnackbar, setLoading, handleError])
 
     const getRecipes = useCallback(async () => {
         setLoading(true);
         // const options = await getOptions();
-        axios.get(`${apiBasePath}/`, getOptions())
+        axios.get(`${apiBasePath}/`, getAuthHeaderOptions())
             .then((res) => {
                 setLoading(false);
                 setRecipes(res.data.results)
@@ -68,7 +62,7 @@ function useRecipes() {
                 setLoading(false);
                 handleError(err);
             })
-    }, [getOptions, setLoading, handleError])
+    }, [getAuthHeaderOptions, setLoading, handleError])
 
     return {
         recipes,

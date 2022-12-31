@@ -88,7 +88,7 @@ export default function useListItemExtraBookmark(props: Props) {
         const found = findRecipe(recipe);
 
         return (
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', pl: 1, pb: 0.2, mr: 1 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', pl: 1, pb: 0.5, mr: 0.5 }}>
                 <StyledIconButton isAuthenticated={isAuthenticated || false} onClick={() => {
                     if (!isAuthenticated) {
                         return;

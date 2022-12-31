@@ -92,7 +92,7 @@ export default function ResponsiveDrawer(props: Props) {
             </Box>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, pl: 3, pr: 3, pt: 2, pb: 1, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+                sx={{ flexGrow: 1, pl: 2, pr: 2, pt: 2, pb: 1, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
                 <ErrorBoundary FallbackComponent={ErrorFallback} >
