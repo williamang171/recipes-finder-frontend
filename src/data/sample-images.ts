@@ -47,4 +47,4 @@ export const sampleImages = [
     }
 });
 
-export const defaultImage = sampleImages[4]
+export const defaultImage = sampleImages[2]
