@@ -36,9 +36,9 @@ export const sampleImages = [
         authorLink: 'https://unsplash.com/@miracletwentyone'
     },
     {
-        img: 'https://images.unsplash.com/photo-1623341214825-9f4f963727da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-        author: '@diegonacho',
-        authorLink: 'https://unsplash.com/@diegonacho'
+        img: 'https://images.unsplash.com/photo-1663329872246-55cda1f8df62?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+        author: '@furkandokuzlar',
+        authorLink: 'https://unsplash.com/@furkandokuzlar'
     }
 ].map((si) => {
     return {
@@ -47,4 +47,4 @@ export const sampleImages = [
     }
 });
 
-export const defaultImage = sampleImages[2]
+export const defaultImage = sampleImages[7]
