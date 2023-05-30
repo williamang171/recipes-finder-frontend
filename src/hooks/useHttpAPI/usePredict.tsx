@@ -24,15 +24,14 @@ function usePredict() {
 
     const axiosRetryConfig = useMemo(() => {
         return {
-            retries: 6,
+            retries: 10,
             onRetry: (retryCount: number, error: AxiosError) => {
                 if (error.response !== undefined && error.response.status === 503) {
                     const response = error.response || {};
                     const data = response.data || {};
                     if (data && data.detail) {
                         if (data.detail.error && data.detail.estimated_time) {
-                            const estimated_time = Math.max(data.detail.estimated_time - ((retryCount - 1) * 8), 1)
-                            const msg = `Model is loading (estimated time: ${estimated_time} ${estimated_time === 1 ? `second` : 'seconds'}), retrying...`
+                            const msg = `Model is loading, retrying...`
                             enqueueSnackbar(msg, {
                                 autoHideDuration: 8000,
                             });

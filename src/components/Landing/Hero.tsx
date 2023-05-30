@@ -21,15 +21,15 @@ export default function Hero() {
         <Container maxWidth="sm">
             <Typography
                 component="h1"
-                variant={overSm ? "h3" : 'h4'}
+                variant={overSm ? "h2" : 'h4'}
                 align="center"
                 color="text.primary"
                 gutterBottom
             >
-                Find Recipes with Image or Text
+                Find and Save Recipes
             </Typography>
             <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                Find recipes by providing image urls, uploading images, or providing text based queries
+                Find recipes by providing text based queries, image urls, or uploading images
             </Typography>
             <Stack
                 sx={{ pt: 4 }}

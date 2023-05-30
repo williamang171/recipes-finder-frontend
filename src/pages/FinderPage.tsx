@@ -19,7 +19,7 @@ export default function FinderPage() {
         <RecipesFinderInput />
         <Box sx={{ mb: 4 }} />
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-            {tab === 1 ? null : <RecipesFinderOutput />}
+            {tab === 0 ? null : <RecipesFinderOutput />}
         </ErrorBoundary>
     </Layout>
 } 

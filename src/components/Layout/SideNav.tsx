@@ -32,12 +32,12 @@ const links = [
     //     to: "/debug-auth",
     //     icon: <LockIcon />
     // }
-    {
-        name: "Settings",
-        key: "settings",
-        to: "/settings",
-        icon: <SettingsIcon />
-    },
+    // {
+    //     name: "Settings",
+    //     key: "settings",
+    //     to: "/settings",
+    //     icon: <SettingsIcon />
+    // },
     {
         name: "Links",
         key: "links",

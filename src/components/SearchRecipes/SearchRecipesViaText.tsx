@@ -52,6 +52,7 @@ export default function SearchRecipesViaText() {
             mb: 1
         }} variant='outlined' label='Search Query' size="small"
             autoFocus
+            helperText="E.g. Apple, Blueberry, Carrot"
         />
 
         <RecipesList empty={renderEmpty} recipes={recipeIdeas} listItemExtra={listItemExtra} />

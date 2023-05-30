@@ -29,13 +29,13 @@ export default function RecipesFinderInput() {
             tab: state.recipesFinder.tab,
         }
     })
-    const preferredMethod = localStorage.getItem("primaryFindMethod");
+    // const preferredMethod = localStorage.getItem("primaryFindMethod");
 
-    useEffect(() => {
-        if (preferredMethod === 'text') {
-            dispatch(setTab(1));
-        }
-    }, [preferredMethod])
+    // useEffect(() => {
+    //     if (preferredMethod === 'text') {
+    //         dispatch(setTab(1));
+    //     }
+    // }, [preferredMethod])
 
     const handleChangeTab = (event: React.SyntheticEvent, newValue: number) => {
         dispatch(setPredictions([]));
@@ -61,15 +61,15 @@ export default function RecipesFinderInput() {
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={tab} onChange={handleChangeTab} aria-label="input-tabs">
+                    <Tab sx={tabItemStyle} disableTouchRipple icon={<TextFieldsIcon />} iconPosition='start' label="Text" />
                     <Tab sx={tabItemStyle} disableTouchRipple icon={<ImageIcon />} iconPosition='start' label="Image" />
                     {/* <Tab sx={tabItemStyle} disableTouchRipple icon={<FileUploadIcon />} iconPosition='start' label="Upload Image" /> */}
-                    <Tab sx={tabItemStyle} disableTouchRipple icon={<TextFieldsIcon />} iconPosition='start' label="Text" />
                 </Tabs>
             </Box>
             <Box sx={{ mt: 1 }} />
             <ErrorBoundary FallbackComponent={ErrorFallback} >
-                {tab === 0 && <InputViaImage setImageUrl={dispatchSetImageUrl} imageUrl={imageUrl} setPredictions={dispatchSetPredictions} />}
-                {tab === 1 && <SearchRecipesViaText />}
+                {tab === 0 && <SearchRecipesViaText />}
+                {tab === 1 && <InputViaImage setImageUrl={dispatchSetImageUrl} imageUrl={imageUrl} setPredictions={dispatchSetPredictions} />}
             </ErrorBoundary>
         </Box>
     )
