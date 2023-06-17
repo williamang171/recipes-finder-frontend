@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -36,18 +36,29 @@ interface Props {
     mealDbId?: string,
     id?: number,
     redditPostId?: string,
-    extra?(recipe: Recipe): any
+    extra?(recipe: Recipe): any,
+    subredditNamePrefixed?: string
 }
 
 export default function RecipeListItem(props: Props) {
-    const { url, imageUrl, title, extra, mealDbId, id, redditPostId, sourceType } = props;
+    const { url, imageUrl, title, extra, mealDbId, id, redditPostId, sourceType, subredditNamePrefixed } = props;
     const { src } = useImage({
         srcList: [imageUrl, '/recipe-placeholder.png'],
         useSuspense: false
     })
 
+    const recipeSource = React.useMemo(() => {
+        if (sourceType == 'mealdb') {
+            return 'mealdb';
+        }
+        if (sourceType == 'reddit') {
+            return subredditNamePrefixed || 'reddit'
+        }
+    }, [sourceType, subredditNamePrefixed])
+
     return (
         <Card sx={{
+            position: 'relative',
             display: 'flex', ':hover': {
                 boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
             },
@@ -63,7 +74,7 @@ export default function RecipeListItem(props: Props) {
             </a>
 
             <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, maxWidth: '100%', width: "100%", overflow: 'hidden' }}>
-                <CardContent sx={{ flex: '1 0 auto', overflow: 'hidden', p: 1.5, pb: 0 }} >
+                <CardContent sx={{ flex: '1 0 auto', overflow: 'hidden', p: 1.5, pb: 0, }} >
                     <StyledTypography noWrap variant="subtitle2" sx={{
                         color: (theme) => theme.palette.primary.main
                     }}
@@ -72,9 +83,12 @@ export default function RecipeListItem(props: Props) {
                             {title}
                         </Link>
                     </StyledTypography>
-                    {/* {mealDbId ? <Typography variant="subtitle1" color="text.secondary" >
-                        Meal ID: {mealDbId}
-                    </Typography> : null} */}
+                    <Typography variant="caption" color="text.secondary" sx={{
+                        position: 'absolute',
+                        bottom: 4
+                    }} >
+                        Source: {recipeSource}
+                    </Typography>
                 </CardContent>
                 {typeof extra === 'function' ? extra({
                     url,

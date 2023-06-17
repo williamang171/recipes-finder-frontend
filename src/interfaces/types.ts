@@ -21,6 +21,7 @@ export interface Recipe {
     reddit_post_id?: string;
     source_type?: string;
     title: string;
+    subreddit_name_prefixed?: string;
 }
 
 export interface User {
