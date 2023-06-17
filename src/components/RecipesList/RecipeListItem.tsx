@@ -42,9 +42,9 @@ interface Props {
 
 export default function RecipeListItem(props: Props) {
     const { url, imageUrl, title, extra, mealDbId, id, redditPostId, sourceType, subredditNamePrefixed } = props;
-    const { src } = useImage({
+    const { src, isLoading } = useImage({
         srcList: [imageUrl, '/recipe-placeholder.png'],
-        useSuspense: false
+        useSuspense: false,
     })
 
     const recipeSource = React.useMemo(() => {
@@ -65,12 +65,14 @@ export default function RecipeListItem(props: Props) {
             minWidth: 320
         }} variant="outlined">
             <a target="_blank" rel="noreferrer" href={url}>
-                <CardMedia
-                    component="img"
-                    sx={{ height: 100, width: "auto", maxHeight: 100, maxWidth: 100 }}
-                    image={src}
-                    alt={title}
-                />
+                {isLoading ? <Box sx={{ width: '100px', height: '100px' }} /> :
+                    <CardMedia
+                        component="img"
+                        sx={{ height: 100, width: "auto", maxHeight: 100, maxWidth: 100 }}
+                        image={src}
+                        alt={title}
+                    />
+                }
             </a>
 
             <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1, maxWidth: '100%', width: "100%", overflow: 'hidden' }}>
