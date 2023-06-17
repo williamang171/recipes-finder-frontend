@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import Link from "@mui/material/Link";
 
 import { Recipe } from "interfaces/types";
+import { useImage } from 'react-image';
 const StyledTypography = styled(Typography)(({ theme }) => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -40,6 +41,10 @@ interface Props {
 
 export default function RecipeListItem(props: Props) {
     const { url, imageUrl, title, extra, mealDbId, id, redditPostId, sourceType } = props;
+    const { src } = useImage({
+        srcList: [imageUrl, '/recipe-placeholder.png'],
+        useSuspense: false
+    })
 
     return (
         <Card sx={{
@@ -52,7 +57,7 @@ export default function RecipeListItem(props: Props) {
                 <CardMedia
                     component="img"
                     sx={{ height: 100, width: "auto", maxHeight: 100, maxWidth: 100 }}
-                    image={(!imageUrl ? '/recipe-placeholder.png' : imageUrl)}
+                    image={src}
                     alt={title}
                 />
             </a>
