@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { Box, TextField } from "@mui/material";
+import { Backdrop, Box, CircularProgress, TextField } from "@mui/material";
 import debounce from "lodash/debounce";
 
 import RecipesList from "components/RecipesList";
 import useListItemExtraBookmark from "./useListItemExtraBookmark";
 import useRecipeIdeas from "hooks/useHttpAPI/useRecipeIdeas";
+import ExampleText from "./ExampleText";
 
 export default function SearchRecipesViaText() {
     const [search, setSearch] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
-    const { getRecipeIdeas, data: recipeIdeas } = useRecipeIdeas()
+    const { getRecipeIdeas, data: recipeIdeas, loading } = useRecipeIdeas()
 
     useEffect(() => {
         if (!searchQuery) {
@@ -40,6 +41,9 @@ export default function SearchRecipesViaText() {
     }, [handleChange, debouncedUpdateSearchQuery]);
 
     const renderEmpty = () => {
+        if (searchQuery) {
+            return "No recipes found for the given search query, please try another query";
+        }
         return null;
     }
 
@@ -47,15 +51,24 @@ export default function SearchRecipesViaText() {
         e.preventDefault();
     }, [])
 
-    return <Box component="form" sx={{ mt: 2 }} onSubmit={handleSubmit}>
-        <TextField fullWidth value={search} onChange={handleChangeInput} sx={{
+    const handleExampleTextOnClick = useCallback((s: string) => {
+        setSearch(s)
+        setSearchQuery(s)
+    }, [setSearch, setSearchQuery])
+
+    return <Box component="form" sx={{ mt: 2, position: 'relative' }} onSubmit={handleSubmit}>
+        <TextField inputProps={{
+            maxLength: 100
+        }} fullWidth value={search} onChange={handleChangeInput} sx={{
             mb: 1
         }} variant='outlined' label='Search Query' size="small"
             autoFocus
-            helperText="E.g. Apple, Blueberry, Carrot"
         />
-
-        <RecipesList empty={renderEmpty} recipes={recipeIdeas} listItemExtra={listItemExtra} />
+        <ExampleText handleExampleTextOnClick={handleExampleTextOnClick} />
+        <Backdrop sx={{ position: 'absolute', top: '120px', bottom: 'unset', background: 'transparent', zIndex: 10000 }} open={loading || false} >
+            <CircularProgress color="inherit" />
+        </Backdrop>
+        <RecipesList empty={renderEmpty} recipes={loading ? [] : recipeIdeas} listItemExtra={listItemExtra} loading={loading || false} />
         <Box sx={{ mb: 2 }} />
     </Box>
 }
