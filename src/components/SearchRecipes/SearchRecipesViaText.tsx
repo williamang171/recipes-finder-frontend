@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { Backdrop, Box, CircularProgress, TextField } from "@mui/material";
 import debounce from "lodash/debounce";
-
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import RecipesList from "components/RecipesList";
 import useListItemExtraBookmark from "./useListItemExtraBookmark";
 import useRecipeIdeas from "hooks/useHttpAPI/useRecipeIdeas";
@@ -11,6 +12,8 @@ export default function SearchRecipesViaText() {
     const [search, setSearch] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
     const { getRecipeIdeas, data: recipeIdeas, loading } = useRecipeIdeas()
+    const theme = useTheme();
+    const overSm = useMediaQuery(theme.breakpoints.up('sm'));
 
     useEffect(() => {
         if (!searchQuery) {
@@ -65,7 +68,7 @@ export default function SearchRecipesViaText() {
             autoFocus
         />
         <ExampleText handleExampleTextOnClick={handleExampleTextOnClick} />
-        <Backdrop sx={{ position: 'absolute', top: '120px', bottom: 'unset', background: 'transparent', zIndex: 10000 }} open={loading || false} >
+        <Backdrop sx={{ position: 'absolute', top: overSm ? '120px' : '300px', bottom: 'unset', background: 'transparent', zIndex: 10000 }} open={loading || false} >
             <CircularProgress color="inherit" />
         </Backdrop>
         <RecipesList empty={renderEmpty} recipes={loading ? [] : recipeIdeas} listItemExtra={listItemExtra} loading={loading || false} />
