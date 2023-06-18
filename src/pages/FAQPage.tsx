@@ -10,7 +10,7 @@ import Layout from "components/Layout";
 const faqs = [
     {
         question: 'What are the sources for the recipes?',
-        answer: 'The recipes are queried from https://www.themealdb.com/ and various reddit subreddits including r/recipes, r/easyrecipes, and r/TopSecretRecipes'
+        answer: 'The recipes are queried from https://www.themealdb.com/ and various subreddits including r/recipes, r/easyrecipes, and r/TopSecretRecipes'
     },
 ]
 
