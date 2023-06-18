@@ -68,7 +68,7 @@ export default function RecipeListItem(props: Props) {
                 {isLoading ? <Box sx={{ width: '100px', height: '100px' }} /> :
                     <CardMedia
                         component="img"
-                        sx={{ height: 100, width: "auto", maxHeight: 100, maxWidth: 100 }}
+                        sx={{ height: 100, width: "auto", maxHeight: 100, maxWidth: 100, minWidth: 100 }}
                         image={src}
                         alt={title}
                     />
@@ -99,7 +99,8 @@ export default function RecipeListItem(props: Props) {
                     mealdb_id: mealDbId,
                     reddit_post_id: redditPostId,
                     id,
-                    source_type: sourceType
+                    source_type: sourceType,
+                    subreddit_name_prefixed: subredditNamePrefixed
                 }) : null}
             </Box>
 
