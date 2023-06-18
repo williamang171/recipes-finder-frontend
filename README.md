@@ -5,11 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Back End Repository
 https://github.com/williamang171/recipes-finder-backend
 
-## Environment Variables
-Replace the `REACT_APP_RECAPTCHA_SITE_KEY` with your own reCAPTCHA site key that matches with the secret key in the backend application
-
 ## Available Scripts
-
 In the project directory, you can run:
 
 ### `npm start`
