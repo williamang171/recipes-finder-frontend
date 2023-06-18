@@ -1,7 +1,6 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 
-import BookIcon from '@mui/icons-material/Book';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
@@ -46,8 +45,8 @@ export default function Header(props: Props) {
                 <MenuIcon />
             </IconButton>
             <Box sx={{ display: "flex", alignItems: "center" }} >
-                <BookIcon sx={{ mr: 1 }} />
-                <Typography variant="h6" noWrap component="div">
+                📔
+                <Typography variant="h6" noWrap component="div" sx={{ ml: 1 }}>
                     Recipes Finder
                 </Typography>
             </Box>

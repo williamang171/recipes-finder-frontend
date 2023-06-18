@@ -32,7 +32,17 @@ export default function RecipesList(props: Props) {
                         <Grid item xs={12} sm={12} md={6} lg={6} xl={4} key={r.reddit_post_id || r.mealdb_id} sx={belowSm ? {
                             maxWidth: "calc(100vw - 16px)"
                         } : {}}>
-                            <RecipeListItem extra={listItemExtra} redditPostId={r.reddit_post_id} title={r.title || ""} url={r.url} imageUrl={r.image_url} mealDbId={r.mealdb_id} id={r.id} sourceType={r.source_type || ""} />
+                            <RecipeListItem
+                                extra={listItemExtra}
+                                redditPostId={r.reddit_post_id}
+                                title={r.title || ""}
+                                url={r.url}
+                                imageUrl={r.image_url}
+                                mealDbId={r.mealdb_id}
+                                id={r.id}
+                                sourceType={r.source_type || ""}
+                                subredditNamePrefixed={r.subreddit_name_prefixed}
+                            />
                         </Grid>
                     )
                 })}
