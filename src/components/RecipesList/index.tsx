@@ -3,21 +3,19 @@ import { Grid, Box } from "@mui/material";
 import { useMediaQuery, useTheme } from "@mui/material";
 
 import RecipeListItem from "components/RecipesList/RecipeListItem";
-import { GlobalLoadingContext } from "contexts/GlobalLoadingContext";
 import { Recipe } from "interfaces/types";
-import { useContext } from "react";
 
 interface Props {
     recipes: Array<Recipe>,
     listItemExtra?(recipe: Recipe): any,
-    empty?(): any
+    empty?(): any,
+    loading?: boolean
 }
 
 export default function RecipesList(props: Props) {
-    const { recipes = [], empty, listItemExtra } = props;
+    const { recipes = [], empty, listItemExtra, loading } = props;
     const theme = useTheme();
     const belowSm = useMediaQuery(theme.breakpoints.down('sm'));
-    const { loading } = useContext(GlobalLoadingContext)
 
     if (recipes.length === 0 && empty && loading === false) {
         return empty();
@@ -47,6 +45,8 @@ export default function RecipesList(props: Props) {
                     )
                 })}
             </Grid>
+
+
         </Box>
     )
 }
