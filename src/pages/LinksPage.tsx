@@ -15,7 +15,7 @@ const links = [
     },
     {
         title: 'API Documentation',
-        href: 'https://rf-backend-h62gfkc3pq-uc.a.run.app/docs'
+        href: 'https://rf-backend-v2-h62gfkc3pq-as.a.run.app/docs'
     },
     {
         title: "Food Recognition Model",

@@ -1,7 +1,6 @@
 import { useCallback, useContext, useState } from "react";
 import axios from "axios";
 import useHandleHttpRequestError from "hooks/useHandleHttpRequestError";
-import { GlobalLoadingContext } from "contexts/GlobalLoadingContext";
 
 const baseUrl = "https://www.themealdb.com/api/json/v1/1";
 
@@ -20,7 +19,7 @@ export default function useMealDb() {
     const [mealsView, setMealsView] = useState([]);
     const [emptyResults, setEmptyResults] = useState(false);
     const { handleError } = useHandleHttpRequestError();
-    const { setLoading, loading } = useContext(GlobalLoadingContext);
+    const [loading, setLoading] = useState(false);
 
     const getMeals = useCallback(async (options: GetMealsOptions) => {
         const { searchType, searchQuery } = options;

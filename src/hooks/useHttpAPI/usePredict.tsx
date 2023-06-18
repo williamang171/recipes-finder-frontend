@@ -4,7 +4,6 @@ import { useCallback, useState, useMemo, useContext, useEffect } from "react";
 import axios from "configs/axios-instance";
 import useHandleHttpRequestError from '../useHandleHttpRequestError';
 import { AxiosError } from "axios";
-import { GlobalLoadingContext } from "contexts/GlobalLoadingContext";
 import { useAuthHeaderOptions } from "hooks/useAuthHeaderOptions";
 
 const apiBasePath = "api/v1/predict";
@@ -13,14 +12,11 @@ function usePredict() {
     const [predictions, setPredictions] = useState([]);
     const { handleError } = useHandleHttpRequestError();
     const [pending, setPending] = useState(false);
-    const { setLoading } = useContext(GlobalLoadingContext);
+    // const { setLoading } = useContext(GlobalLoadingContext);
     const { enqueueSnackbar } = useSnackbar();
 
     const getAuthHeaderOptions = useAuthHeaderOptions();
 
-    useEffect(() => {
-        setLoading(pending);
-    }, [pending, setLoading])
 
     const axiosRetryConfig = useMemo(() => {
         return {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Typography, useMediaQuery } from "@mui/material";
+import { Backdrop, CircularProgress, Typography, useMediaQuery } from "@mui/material";
 import Dialog from '@mui/material/Dialog';
 import IconButton from "@mui/material/IconButton";
 import DialogTitle from '@mui/material/DialogTitle';
@@ -23,7 +23,7 @@ interface SearchRecipesProps {
 export default function SearchRecipes(props: SearchRecipesProps) {
     const [searchType, setSearchType] = useState(SEARCH_TYPE.MEAL_NAME)
     const { open, setOpen, searchQuery } = props;
-    const { getRecipeIdeas, data: recipeIdeas, resetRecipeIdeas } = useRecipeIdeas();
+    const { getRecipeIdeas, data: recipeIdeas, resetRecipeIdeas, loading } = useRecipeIdeas();
 
     const { listItemExtra } = useListItemExtraBookmark({
         fetchSavedRecipes: true
@@ -83,7 +83,10 @@ export default function SearchRecipes(props: SearchRecipesProps) {
                 </IconButton>
             </DialogTitle>
             <DialogContent>
-                <RecipesList empty={renderEmpty} recipes={recipeIdeas} listItemExtra={listItemExtra} />
+                <Backdrop sx={{ position: 'absolute', top: 'calc(50% - 20px)', bottom: 'unset', background: 'transparent', zIndex: 10000 }} open={loading || false}  >
+                    <CircularProgress color="inherit" />
+                </Backdrop>
+                <RecipesList empty={renderEmpty} recipes={recipeIdeas} listItemExtra={listItemExtra} loading={loading} />
             </DialogContent>
         </Dialog>
     )
