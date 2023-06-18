@@ -48,8 +48,8 @@ export default function RecipeListItem(props: Props) {
     })
 
     const recipeSource = React.useMemo(() => {
-        if (sourceType == 'mealdb') {
-            return 'mealdb';
+        if (sourceType == 'themealdb') {
+            return 'themealdb';
         }
         if (sourceType == 'reddit') {
             return subredditNamePrefixed || 'reddit'
