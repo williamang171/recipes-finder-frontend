@@ -45,8 +45,6 @@ export default function RecipesList(props: Props) {
                     )
                 })}
             </Grid>
-
-
         </Box>
     )
 }

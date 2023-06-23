@@ -69,7 +69,7 @@ export default function SearchRecipesViaText() {
         />
         <ExampleText handleExampleTextOnClick={handleExampleTextOnClick} />
         <Backdrop sx={{ position: 'absolute', top: overSm ? '120px' : '300px', bottom: 'unset', background: 'transparent', zIndex: 10000 }} open={loading || false} >
-            <CircularProgress color="inherit" />
+            <CircularProgress color="primary" />
         </Backdrop>
         <RecipesList empty={renderEmpty} recipes={loading ? [] : recipeIdeas} listItemExtra={listItemExtra} loading={loading || false} />
         <Box sx={{ mb: 2 }} />

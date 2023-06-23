@@ -84,7 +84,7 @@ export default function SearchRecipes(props: SearchRecipesProps) {
             </DialogTitle>
             <DialogContent>
                 <Backdrop sx={{ position: 'absolute', top: 'calc(50% - 20px)', bottom: 'unset', background: 'transparent', zIndex: 10000 }} open={loading || false}  >
-                    <CircularProgress color="inherit" />
+                    <CircularProgress />
                 </Backdrop>
                 <RecipesList empty={renderEmpty} recipes={recipeIdeas} listItemExtra={listItemExtra} loading={loading} />
             </DialogContent>

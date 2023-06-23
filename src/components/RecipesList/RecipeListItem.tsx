@@ -9,6 +9,8 @@ import Link from "@mui/material/Link";
 
 import { Recipe } from "interfaces/types";
 import { useImage } from 'react-image';
+import { CircularProgress } from '@mui/material';
+
 const StyledTypography = styled(Typography)(({ theme }) => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -27,6 +29,13 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
     }
 }))
 
+const LoadingBox = styled(Box)(({ theme }) => ({
+    width: 100,
+    height: 100,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+}))
 
 interface Props {
     url: string,
@@ -65,7 +74,11 @@ export default function RecipeListItem(props: Props) {
             minWidth: 320
         }} variant="outlined">
             <a target="_blank" rel="noreferrer" href={url}>
-                {isLoading ? <Box sx={{ width: '100px', height: '100px' }} /> :
+                {isLoading ? <LoadingBox>
+                    <CircularProgress disableShrink size={20}
+                        color="primary"
+                    />
+                </LoadingBox> :
                     <CardMedia
                         component="img"
                         sx={{ height: 100, width: "auto", maxHeight: 100, maxWidth: 100, minWidth: 100 }}
