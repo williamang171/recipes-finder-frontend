@@ -11,9 +11,9 @@ export default function RequireNotAuth() {
 
     if (isAuthenticated === null) {
         return <Box sx={{ height: "100vh", width: "100vw", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap", flexDirection: "column" }}>
-            <CircularProgress />
+            <CircularProgress color="inherit" />
             <Box sx={{ textAlign: "center", width: "100%", mt: 2 }}>
-                <Typography variant="body1" color='primary'>Loading...</Typography>
+                <Typography variant="body1" color='inherit'>Loading...</Typography>
             </Box>
         </Box>
     }
