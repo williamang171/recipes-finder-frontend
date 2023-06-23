@@ -7,6 +7,9 @@ import Hero from "components/Landing/Hero";
 
 import Main from "components/Landing/Main";
 import Section from "components/Landing/Section";
+import useHello from 'hooks/useHttpAPI/useHello';
+import { useEffect } from 'react';
+
 
 const theme = createTheme({
     palette: {
@@ -14,7 +17,20 @@ const theme = createTheme({
     }
 })
 
+const useWakeUpDb = () => {
+    const { wakeUpDb } = useHello();
+    useEffect(() => {
+        try {
+            wakeUpDb();
+        } catch (error) {
+            console.log(error);
+        }
+    }, [wakeUpDb])
+}
+
 export default function IndexPage() {
+    useWakeUpDb();
+
     return (
         <ThemeProvider
             theme={theme}
