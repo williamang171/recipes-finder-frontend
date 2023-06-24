@@ -99,9 +99,9 @@ export default function SignIn() {
                     </LoadingButton>
                     <Grid container>
                         <Grid item>
-                            <Link to="/auth/sign-up" component={RouterLink}>
+                            {loading ? null : <Link to="/auth/sign-up" component={RouterLink}>
                                 {"Don't have an account? Sign Up"}
-                            </Link>
+                            </Link>}
                         </Grid>
                     </Grid>
                 </Box>
