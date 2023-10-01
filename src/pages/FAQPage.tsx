@@ -15,11 +15,13 @@ const faqs = [
 ]
 
 export default function GitHubPage() {
+ 
+
     return (
         <Layout>
             {faqs.map((f, i) => {
                 return (
-                    <Accordion defaultExpanded>
+                    <Accordion key={f.question} defaultExpanded>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls={`panel${i + 1}-content`}
@@ -35,6 +37,7 @@ export default function GitHubPage() {
                     </Accordion>
                 )
             })}
+            
         </Layout>
     );
 }
