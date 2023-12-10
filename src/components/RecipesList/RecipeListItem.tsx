@@ -49,6 +49,8 @@ interface Props {
   subredditNamePrefixed?: string;
 }
 
+const placeholderImgPath = '/recipe-placeholder-v5.jpg';
+
 export default function RecipeListItem(props: Props) {
   const {
     url,
@@ -62,7 +64,7 @@ export default function RecipeListItem(props: Props) {
     subredditNamePrefixed,
   } = props;
   const [imageSrc, setImageSrc] = React.useState(
-    imageUrl || '/recipe-placeholder.png'
+    imageUrl || placeholderImgPath
   );
   const [loaded, setLoaded] = React.useState(false);
 
@@ -111,7 +113,7 @@ export default function RecipeListItem(props: Props) {
             objectFit: 'cover',
           }}
           onError={() => {
-            setImageSrc('/recipe-placeholder.png');
+            setImageSrc(placeholderImgPath);
           }}
           onLoad={() => setLoaded(true)}
           image={imageSrc}
