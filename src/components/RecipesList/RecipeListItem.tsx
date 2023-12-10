@@ -1,5 +1,6 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
+import { useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -9,7 +10,6 @@ import Skeleton from '@mui/material/Skeleton';
 import Link from '@mui/material/Link';
 
 import { Recipe } from 'interfaces/types';
-import { CircularProgress } from '@mui/material';
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
   overflow: 'hidden',
@@ -75,17 +75,19 @@ export default function RecipeListItem(props: Props) {
     }
   }, [sourceType, subredditNamePrefixed]);
 
+  const theme = useTheme();
+  const currentModeIsDark = theme.palette.mode === 'dark';
+
   return (
     <Card
       sx={{
         position: 'relative',
-        display: 'flex',
         ':hover': {
           boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
         },
-        minWidth: 320,
-        minHeight: 100,
-        height: 100,
+        minHeight: 300,
+        height: 300,
+        maxHeight: 300,
       }}
       variant="outlined"
     >
@@ -97,19 +99,16 @@ export default function RecipeListItem(props: Props) {
       >
         <Skeleton
           variant="rectangular"
-          width={100}
-          height={100}
+          width={'100%'}
+          height={200}
           sx={{ position: 'absolute', display: loaded ? 'none' : 'block' }}
         />
         <CardMedia
           component="img"
           loading="lazy"
           sx={{
-            height: 100,
-            width: 'auto',
-            maxHeight: 100,
-            maxWidth: 100,
-            minWidth: 100,
+            height: 200,
+            objectFit: 'cover',
           }}
           onError={() => {
             setImageSrc('/recipe-placeholder.png');
@@ -132,14 +131,15 @@ export default function RecipeListItem(props: Props) {
         <CardContent
           sx={{ flex: '1 0 auto', overflow: 'hidden', p: 1.5, pb: 0 }}
         >
-          <StyledTypography
-            noWrap
-            variant="subtitle2"
-            sx={{
-              color: (theme) => theme.palette.primary.main,
-            }}
-          >
-            <Link target="_blank" rel="noreferrer" href={url}>
+          <StyledTypography noWrap variant="subtitle2">
+            <Link
+              target="_blank"
+              rel="noreferrer"
+              href={url}
+              style={{
+                color: currentModeIsDark ? '#fff' : theme.palette.primary.main,
+              }}
+            >
               {title}
             </Link>
           </StyledTypography>
