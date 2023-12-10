@@ -1,9 +1,9 @@
-import SearchIcon from '@mui/icons-material/Search';
 import List from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
-import SettingsIcon from '@mui/icons-material/Settings';
+import TextFieldsIcon from '@mui/icons-material/TextFields';
+import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import Toolbar from '@mui/material/Toolbar';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ListItemButton } from '@mui/material';
@@ -12,10 +12,16 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 
 const links = [
   {
-    name: 'Finder',
-    key: 'finder',
-    to: '/finder',
-    icon: <SearchIcon />,
+    name: 'Find By Text',
+    key: 'finder-text',
+    to: '/finder-text',
+    icon: <TextFieldsIcon />,
+  },
+  {
+    name: 'Find By Image',
+    key: 'finder-image',
+    to: '/finder-image',
+    icon: <ImageSearchIcon />,
   },
   {
     name: 'Saved',
