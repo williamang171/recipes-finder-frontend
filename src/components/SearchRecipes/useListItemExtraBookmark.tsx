@@ -28,6 +28,7 @@ interface ListItemExtraBookmarkIconProps {
   isAuthenticated: boolean;
 }
 
+// eslint-disable-next-line react/display-name
 const ListItemExtraBookmarkIcon = React.memo((props: ListItemExtraBookmarkIconProps) => {
   const { found, isAuthenticated } = props;
   if (isAuthenticated) {

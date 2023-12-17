@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Avatar, Typography } from '@mui/material';
 
 interface Props {

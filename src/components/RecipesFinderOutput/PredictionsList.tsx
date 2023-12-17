@@ -20,6 +20,7 @@ interface Props {
   setOpen(open: boolean): any;
 }
 
+// eslint-disable-next-line react/display-name
 const Placeholder = React.memo(() => {
   return null;
 });
