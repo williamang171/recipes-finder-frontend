@@ -1,5 +1,5 @@
 import { useSnackbar } from 'notistack';
-import { useCallback, useState, useMemo, useContext, useEffect } from 'react';
+import { useCallback, useState, useMemo, useEffect } from 'react';
 
 import axios from 'configs/axios-instance';
 import useHandleHttpRequestError from '../useHandleHttpRequestError';
@@ -9,6 +9,7 @@ import { useAuthHeaderOptions } from 'hooks/useAuthHeaderOptions';
 const apiBasePath = 'api/v1/predict';
 
 function usePredict() {
+  const [progress, setProgress] = useState(-1);
   const [predictions, setPredictions] = useState([]);
   const { handleError } = useHandleHttpRequestError();
   const [pending, setPending] = useState(false);
@@ -16,6 +17,15 @@ function usePredict() {
   const { enqueueSnackbar } = useSnackbar();
 
   const getAuthHeaderOptions = useAuthHeaderOptions();
+
+  useEffect(() => {
+    if (progress === 100) {
+      const timer1 = setTimeout(() => setProgress(-1), 3000);
+      return () => {
+        clearTimeout(timer1);
+      };
+    }
+  }, [progress, setProgress]);
 
   const axiosRetryConfig = useMemo(() => {
     return {
@@ -26,9 +36,18 @@ function usePredict() {
           const data = response.data || {};
           if (data && data.detail) {
             if (data.detail.error && data.detail.estimated_time) {
-              const msg = `Model is loading, retrying...`;
-              enqueueSnackbar(msg, {
-                autoHideDuration: 8000
+              // const msg = `Model is loading, retrying...`;
+              // enqueueSnackbar(msg, {
+              //   autoHideDuration: 8000
+              // });
+              setProgress((v) => {
+                if (v >= 80 && v < 99) {
+                  return v + 1;
+                }
+                if (v < 100) {
+                  return v + 20;
+                }
+                return 99;
               });
               return;
             }
@@ -40,12 +59,13 @@ function usePredict() {
         return 8000; // time interval between retries
       }
     };
-  }, [enqueueSnackbar]);
+  }, [enqueueSnackbar, setProgress]);
 
   const predictViaUrl = useCallback(
     async (imageUrl: string, options?) => {
       try {
         setPending(true);
+        setProgress(0);
         const res = await axios.post(
           `${apiBasePath}/`,
           {
@@ -57,6 +77,7 @@ function usePredict() {
             'axios-retry': axiosRetryConfig
           }
         );
+        setProgress(100);
         setPredictions(res.data);
         setPending(false);
         enqueueSnackbar('Predictions made');
@@ -80,12 +101,13 @@ function usePredict() {
     async (formData, options?) => {
       try {
         setPending(true);
+        setProgress(0);
         const res = await axios.post(`${apiBasePath}/upload`, formData, {
           ...options,
           ...getAuthHeaderOptions(),
           'axios-retry': axiosRetryConfig
         });
-
+        setProgress(100);
         setPredictions(res.data);
         setPending(false);
         enqueueSnackbar('Predictions made');
@@ -109,7 +131,8 @@ function usePredict() {
     predictions,
     predictViaUrl,
     predictViaUpload,
-    pending: pending
+    pending: pending,
+    progress
   };
 }
 

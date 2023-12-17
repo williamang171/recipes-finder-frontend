@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { LoadingButton } from '@mui/lab';
-import { useTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 
@@ -9,6 +8,7 @@ import usePredict from 'hooks/useHttpAPI/usePredict';
 import useGRecaptcha from 'hooks/useGRecaptcha';
 import { Prediction } from 'interfaces/types';
 import { defaultImage } from 'data/sample-images';
+import LinearProgressWithLabel from 'components/LinearProgressWithLabel';
 
 interface Props {
   setPredictions(predictions: Array<Prediction>): any;
@@ -17,8 +17,7 @@ interface Props {
 }
 
 export default function InputViaUrl(props: Props) {
-  const { pending, predictViaUrl } = usePredict();
-  const theme = useTheme();
+  const { pending, predictViaUrl, progress } = usePredict();
   const [inputImageUrl, setInputImageUrl] = useState<string | null>('');
   const { setPredictions, imageUrl, setImageUrl } = props;
   const {
@@ -90,6 +89,7 @@ export default function InputViaUrl(props: Props) {
         >
           Submit
         </LoadingButton>
+        <LinearProgressWithLabel value={progress} />
       </Box>
     </div>
   );

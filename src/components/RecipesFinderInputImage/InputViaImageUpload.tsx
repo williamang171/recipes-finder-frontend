@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import { useTheme } from '@mui/material/styles';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { styled } from '@mui/material/styles';
 import { Button, Box } from '@mui/material';
@@ -10,6 +9,7 @@ import useGRecaptcha from 'hooks/useGRecaptcha';
 import { Prediction } from 'interfaces/types';
 
 import usePredict from 'hooks/useHttpAPI/usePredict';
+import LinearProgressWithLabel from 'components/LinearProgressWithLabel';
 
 const Input = styled('input')({
   display: 'none'
@@ -21,9 +21,9 @@ interface Props {
 }
 
 export default function FileUpload(props: Props) {
-  const { predictViaUpload, pending } = usePredict();
+  const { predictViaUpload, pending, progress } = usePredict();
   const { setPredictions, setImageUrl } = props;
-  const theme = useTheme();
+
   const {
     gRecaptchaOnChange,
     gRecaptchaRef,
@@ -105,6 +105,7 @@ export default function FileUpload(props: Props) {
       >
         Submit
       </LoadingButton>
+      <LinearProgressWithLabel value={progress} />
     </Box>
   );
 }
