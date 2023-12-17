@@ -10,6 +10,7 @@ import ExampleText from './ExampleText';
 
 export default function SearchRecipesViaText() {
   const [search, setSearch] = useState('');
+  const [submitted, setSubmitted] = useState(false);
   const { getRecipeIdeas, data: recipeIdeas, loading } = useRecipeIdeas();
   const theme = useTheme();
   const overSm = useMediaQuery(theme.breakpoints.up('sm'));
@@ -30,7 +31,7 @@ export default function SearchRecipesViaText() {
   );
 
   const renderEmpty = () => {
-    if (search) {
+    if (search && submitted && !loading) {
       return 'No recipes found for the given search query, please try another query';
     }
     return null;
@@ -40,6 +41,7 @@ export default function SearchRecipesViaText() {
     (e: React.FormEvent) => {
       e.preventDefault();
       getRecipeIdeas(search);
+      setSubmitted(true);
     },
     [getRecipeIdeas, search]
   );
