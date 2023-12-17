@@ -7,24 +7,24 @@ import { useMemo } from 'react';
 const links = [
   {
     title: 'Back End Repository',
-    href: 'https://github.com/williamang171/recipes-finder-backend',
+    href: 'https://github.com/williamang171/recipes-finder-backend'
   },
   {
     title: 'Front End Repository',
-    href: 'https://github.com/williamang171/recipes-finder-frontend',
+    href: 'https://github.com/williamang171/recipes-finder-frontend'
   },
   {
     title: 'API Documentation',
-    href: 'https://rf-backend-v2-h62gfkc3pq-as.a.run.app/docs',
+    href: 'https://rf-backend-v2-h62gfkc3pq-as.a.run.app/docs'
   },
   {
     title: 'Food Recognition Model',
-    href: 'https://huggingface.co/william7642/my_awesome_food_model',
+    href: 'https://huggingface.co/william7642/my_awesome_food_model'
   },
   {
     title: 'Food Recognition Model Standalone Demo',
-    href: 'https://huggingface.co/spaces/william7642/food-model',
-  },
+    href: 'https://huggingface.co/spaces/william7642/food-model'
+  }
 ];
 
 export default function GitHubPage() {
@@ -32,7 +32,7 @@ export default function GitHubPage() {
   const currentModeIsDark = theme.palette.mode === 'dark';
   const aStyle = useMemo(() => {
     return {
-      color: currentModeIsDark ? '#fff' : theme.palette.primary.main,
+      color: currentModeIsDark ? '#fff' : theme.palette.primary.main
     };
   }, [theme.palette.primary.main, currentModeIsDark]);
 
@@ -40,15 +40,10 @@ export default function GitHubPage() {
     <Layout>
       {links.map((l) => {
         return (
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" gutterBottom key={l.title}>
             <p>
               {l.title}:{' '}
-              <a
-                href={l.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={aStyle}
-              >
+              <a href={l.href} target="_blank" rel="noopener noreferrer" style={aStyle}>
                 {l.href}
               </a>
             </p>

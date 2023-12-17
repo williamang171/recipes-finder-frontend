@@ -36,7 +36,7 @@ export default function RecipesList(props: Props) {
               sx={
                 belowSm
                   ? {
-                      maxWidth: 'calc(100vw - 16px)',
+                      maxWidth: 'calc(100vw - 16px)'
                     }
                   : {}
               }

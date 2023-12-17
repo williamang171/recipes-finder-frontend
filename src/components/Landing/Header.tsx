@@ -9,21 +9,10 @@ export default function Header() {
     <Toolbar sx={{ background: constants.color.main }}>
       <Box color="inherit" />
       📔
-      <Typography
-        component="h2"
-        variant="h6"
-        color="text.primary"
-        noWrap
-        sx={{ flex: 1, ml: 1 }}
-      >
+      <Typography component="h2" variant="h6" color="text.primary" noWrap sx={{ flex: 1, ml: 1 }}>
         Recipes Finder
       </Typography>
-      <Button
-        component="a"
-        href="/finder-text"
-        variant="contained"
-        size="small"
-      >
+      <Button component="a" href="/finder-text" variant="contained" size="small">
         Open App
       </Button>
     </Toolbar>

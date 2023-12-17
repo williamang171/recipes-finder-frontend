@@ -1,4 +1,4 @@
-import { useMemo, useEffect, createContext, useState } from 'react';
+import React, { useMemo, useEffect, createContext, useState } from 'react';
 
 import { grey, blue, blueGrey, deepOrange } from '@mui/material/colors';
 import { ThemeProvider, createTheme, alpha } from '@mui/material/styles';
@@ -6,10 +6,7 @@ import { ThemeProvider, createTheme, alpha } from '@mui/material/styles';
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 let preferDarkMode = false;
-if (
-  window.matchMedia &&
-  window.matchMedia('(prefers-color-scheme: dark)').matches
-) {
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
   preferDarkMode = true;
 }
 const defaultMode = preferDarkMode ? 'dark' : 'light';
@@ -21,10 +18,10 @@ interface Props {
 export const getDesignTokens = (mode: 'light' | 'dark') => ({
   palette: {
     primary: {
-      main: '#439A97',
+      main: '#439A97'
     },
     secondary: {
-      main: '#D127E0',
+      main: '#D127E0'
     },
     divider: mode === 'dark' ? alpha(blue[100], 0.08) : grey[100],
     primaryDark: blueGrey,
@@ -32,10 +29,10 @@ export const getDesignTokens = (mode: 'light' | 'dark') => ({
     ...(mode === 'dark' && {
       background: {
         default: blueGrey[900],
-        paper: blueGrey[900],
-      },
-    }),
-  },
+        paper: blueGrey[900]
+      }
+    })
+  }
 });
 
 export default function ToggleColorMode(props: Props) {
@@ -44,7 +41,7 @@ export default function ToggleColorMode(props: Props) {
     () => ({
       toggleColorMode: () => {
         setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-      },
+      }
     }),
     []
   );

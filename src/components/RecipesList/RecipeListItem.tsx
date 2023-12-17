@@ -22,11 +22,11 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
 
   a: {
     textDecoration: 'none',
-    color: theme.palette.primary.main,
+    color: theme.palette.primary.main
   },
   'a:hover': {
-    textDecoration: 'underline',
-  },
+    textDecoration: 'underline'
+  }
 }));
 
 const LoadingBox = styled(Box)(({ theme }) => ({
@@ -34,7 +34,7 @@ const LoadingBox = styled(Box)(({ theme }) => ({
   height: 100,
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'center'
 }));
 
 interface Props {
@@ -49,6 +49,8 @@ interface Props {
   subredditNamePrefixed?: string;
 }
 
+const placeholderImgPath = '/recipe-placeholder-v5.jpg';
+
 export default function RecipeListItem(props: Props) {
   const {
     url,
@@ -59,11 +61,9 @@ export default function RecipeListItem(props: Props) {
     id,
     redditPostId,
     sourceType,
-    subredditNamePrefixed,
+    subredditNamePrefixed
   } = props;
-  const [imageSrc, setImageSrc] = React.useState(
-    imageUrl || '/recipe-placeholder.png'
-  );
+  const [imageSrc, setImageSrc] = React.useState(imageUrl || placeholderImgPath);
   const [loaded, setLoaded] = React.useState(false);
 
   const recipeSource = React.useMemo(() => {
@@ -83,20 +83,15 @@ export default function RecipeListItem(props: Props) {
       sx={{
         position: 'relative',
         ':hover': {
-          boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+          boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
         },
         minHeight: 300,
         height: 300,
-        maxHeight: 300,
+        maxHeight: 300
       }}
       variant="outlined"
     >
-      <a
-        target="_blank"
-        rel="noreferrer"
-        href={url}
-        style={{ position: 'relative' }}
-      >
+      <a target="_blank" rel="noreferrer" href={url} style={{ position: 'relative' }}>
         <Skeleton
           variant="rectangular"
           width={'100%'}
@@ -108,10 +103,10 @@ export default function RecipeListItem(props: Props) {
           loading="lazy"
           sx={{
             height: 200,
-            objectFit: 'cover',
+            objectFit: 'cover'
           }}
           onError={() => {
-            setImageSrc('/recipe-placeholder.png');
+            setImageSrc(placeholderImgPath);
           }}
           onLoad={() => setLoaded(true)}
           image={imageSrc}
@@ -125,19 +120,17 @@ export default function RecipeListItem(props: Props) {
           flexGrow: 1,
           maxWidth: '100%',
           width: '100%',
-          overflow: 'hidden',
+          overflow: 'hidden'
         }}
       >
-        <CardContent
-          sx={{ flex: '1 0 auto', overflow: 'hidden', p: 1.5, pb: 0 }}
-        >
+        <CardContent sx={{ flex: '1 0 auto', overflow: 'hidden', p: 1.5, pb: 0 }}>
           <StyledTypography noWrap variant="subtitle2">
             <Link
               target="_blank"
               rel="noreferrer"
               href={url}
               style={{
-                color: currentModeIsDark ? '#fff' : theme.palette.primary.main,
+                color: currentModeIsDark ? '#fff' : theme.palette.primary.main
               }}
             >
               {title}
@@ -148,7 +141,7 @@ export default function RecipeListItem(props: Props) {
             color="text.secondary"
             sx={{
               position: 'absolute',
-              bottom: 4,
+              bottom: 4
             }}
           >
             Source: {recipeSource}
@@ -163,7 +156,7 @@ export default function RecipeListItem(props: Props) {
               reddit_post_id: redditPostId,
               id,
               source_type: sourceType,
-              subreddit_name_prefixed: subredditNamePrefixed,
+              subreddit_name_prefixed: subredditNamePrefixed
             })
           : null}
       </Box>
