@@ -51,7 +51,7 @@ registerRoute(
     // Return true to signal that we want to use the handler.
     return true;
   },
-  /* global process */
+  // eslint-disable-next-line no-undef
   createHandlerBoundToURL(process.env.PUBLIC_URL + '/index.html')
 );
 
