@@ -20,7 +20,7 @@ function usePredict() {
 
   useEffect(() => {
     if (progress === 100) {
-      const timer1 = setTimeout(() => setProgress(-1), 3000);
+      const timer1 = setTimeout(() => setProgress(-1), 2000);
       return () => {
         clearTimeout(timer1);
       };
@@ -41,11 +41,11 @@ function usePredict() {
               //   autoHideDuration: 8000
               // });
               setProgress((v) => {
-                if (v >= 80 && v < 99) {
+                if (v >= 90 && v < 99) {
                   return v + 1;
                 }
                 if (v < 100) {
-                  return v + 20;
+                  return v + 15;
                 }
                 return 99;
               });
@@ -56,7 +56,7 @@ function usePredict() {
       },
       retryDelay: (retryCount: number) => {
         console.log(`retry attempt: ${retryCount}`);
-        return 8000; // time interval between retries
+        return 5000; // time interval between retries
       }
     };
   }, [enqueueSnackbar, setProgress]);
