@@ -7,13 +7,8 @@ interface Props {
 
 export default function NoRecipesFound(props: Props) {
   const { searchType, searchQuery } = props;
-  if (searchQuery && searchType) {
-    return (
-      <div>
-        No recipes found with the given{' '}
-        {searchType === SEARCH_TYPE.INGREDIENT ? 'ingredient' : 'meal name'}: {searchQuery}
-      </div>
-    );
+  if (searchQuery) {
+    return <div>{`No recipes found with the given query`}</div>;
   }
 
   return null;

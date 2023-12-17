@@ -42,9 +42,9 @@ export default function SearchRecipes(props: SearchRecipesProps) {
   }, [open, searchQuery, searchType, getRecipeIdeas]);
 
   const renderEmpty = () => {
-    // if (emptyResults) {
-    //     return <NoRecipesFound searchQuery={searchQuery} searchType={searchType} />
-    // }
+    if (searchQuery) {
+      return <NoRecipesFound searchQuery={searchQuery} searchType={searchType} />;
+    }
     return null;
   };
   const Over400 = useMediaQuery('(min-width:400px)');
