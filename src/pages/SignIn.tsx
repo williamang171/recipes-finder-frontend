@@ -28,7 +28,7 @@ type FormData = {
 const schema = yup
   .object({
     email: yupSchema.email,
-    password: yup.string().required(),
+    password: yup.string().required()
   })
   .required();
 
@@ -38,16 +38,16 @@ export default function SignIn() {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<FormData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema)
   });
 
   const onSubmit = (data: FormData) => {
     login(
       {
         username: data.email,
-        password: data.password,
+        password: data.password
       },
       () => {
         navigate('/finder-text');
@@ -62,7 +62,7 @@ export default function SignIn() {
           marginTop: 8,
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
+          alignItems: 'center'
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -74,17 +74,12 @@ export default function SignIn() {
         <Alert severity="info" sx={{ mt: 4, mb: 2 }}>
           <DemoUserMessage />
         </Alert>
-        <Box
-          component="form"
-          onSubmit={handleSubmit(onSubmit)}
-          noValidate
-          sx={{ mt: 1 }}
-        >
+        <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
           <Controller
             name="email"
             control={control}
             rules={{
-              required: 'Email is required',
+              required: 'Email is required'
             }}
             defaultValue={demoUser.username}
             render={({ field }) => (

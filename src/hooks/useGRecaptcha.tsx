@@ -1,38 +1,40 @@
-import { useState, useRef, useMemo, useCallback } from "react";
-import { ReCAPTCHA } from "react-google-recaptcha";
+import { useState, useRef, useMemo, useCallback } from 'react';
+import { ReCAPTCHA } from 'react-google-recaptcha';
 
 const captchaEnabled = process.env.REACT_APP_RECAPTCHA_ON === 'True';
-const siteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY || "";
+const siteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY || '';
 
 export default function useGRecaptcha() {
-    const [value, setValue] = useState("");
-    const gRecaptchaRef = useRef<ReCAPTCHA>(null);
+  const [value, setValue] = useState('');
+  const gRecaptchaRef = useRef<ReCAPTCHA>(null);
 
-    const onChange = useCallback((v: any) => {
-        setValue(v);
-    }, [setValue])
+  const onChange = useCallback(
+    (v: any) => {
+      setValue(v);
+    },
+    [setValue]
+  );
 
-    const gRecaptchaReset = useCallback(() => {
-        if (gRecaptchaRef && gRecaptchaRef.current) {
-            gRecaptchaRef.current.reset();
-        }
-        setValue("");
-    }, [gRecaptchaRef, setValue])
-
-    const gRecaptchaHeaders = useMemo(() => {
-        return {
-            "recaptcha-res": value
-        }
-    }, [value])
-
-
-    return {
-        gRecaptchaHeaders,
-        gRecaptchaReset,
-        gRecaptchaRef,
-        gRecaptchaValue: value,
-        gRecaptchaOnChange: onChange,
-        siteKey,
-        captchaEnabled
+  const gRecaptchaReset = useCallback(() => {
+    if (gRecaptchaRef && gRecaptchaRef.current) {
+      gRecaptchaRef.current.reset();
     }
+    setValue('');
+  }, [gRecaptchaRef, setValue]);
+
+  const gRecaptchaHeaders = useMemo(() => {
+    return {
+      'recaptcha-res': value
+    };
+  }, [value]);
+
+  return {
+    gRecaptchaHeaders,
+    gRecaptchaReset,
+    gRecaptchaRef,
+    gRecaptchaValue: value,
+    gRecaptchaOnChange: onChange,
+    siteKey,
+    captchaEnabled
+  };
 }

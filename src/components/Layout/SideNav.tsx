@@ -15,19 +15,19 @@ const links = [
     name: 'Find By Text',
     key: 'finder-text',
     to: '/finder-text',
-    icon: <TextFieldsIcon />,
+    icon: <TextFieldsIcon />
   },
   {
     name: 'Find By Image',
     key: 'finder-image',
     to: '/finder-image',
-    icon: <ImageSearchIcon />,
+    icon: <ImageSearchIcon />
   },
   {
     name: 'Saved',
     key: 'saved',
     to: '/saved-recipes',
-    icon: <BookmarksIcon />,
+    icon: <BookmarksIcon />
   },
   // {
   //     name: "Debug Auth",
@@ -45,14 +45,14 @@ const links = [
     name: 'Links',
     key: 'links',
     to: '/links',
-    icon: <LinkIcon />,
+    icon: <LinkIcon />
   },
   {
     name: 'FAQ',
     key: 'faq',
     to: '/faq',
-    icon: <QuestionAnswerIcon />,
-  },
+    icon: <QuestionAnswerIcon />
+  }
 ];
 
 export default function SideNav() {

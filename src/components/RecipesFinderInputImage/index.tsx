@@ -2,11 +2,7 @@ import { useCallback, useEffect } from 'react';
 import Box from '@mui/material/Box';
 
 import { useAppSelector, useAppDispatch } from 'hooks/useReduxHooks';
-import {
-  setPredictions,
-  setImageUrl,
-  setTab,
-} from 'features/recipesFinder/recipesFinderSlice';
+import { setPredictions, setImageUrl, setTab } from 'features/recipesFinder/recipesFinderSlice';
 import { Prediction } from 'interfaces/types';
 
 import InputViaImage from './InputViaImage';
@@ -18,7 +14,7 @@ export default function RecipesFinderInput() {
   const { imageUrl } = useAppSelector((state) => {
     return {
       imageUrl: state.recipesFinder.imageUrl,
-      tab: state.recipesFinder.tab,
+      tab: state.recipesFinder.tab
     };
   });
 

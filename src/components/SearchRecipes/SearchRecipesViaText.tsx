@@ -15,7 +15,7 @@ export default function SearchRecipesViaText() {
   const overSm = useMediaQuery(theme.breakpoints.up('sm'));
 
   const { listItemExtra } = useListItemExtraBookmark({
-    fetchSavedRecipes: true,
+    fetchSavedRecipes: true
   });
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,20 +53,16 @@ export default function SearchRecipesViaText() {
   );
 
   return (
-    <Box
-      component="form"
-      sx={{ mt: 2, position: 'relative' }}
-      onSubmit={handleSubmit}
-    >
+    <Box component="form" sx={{ mt: 2, position: 'relative' }} onSubmit={handleSubmit}>
       <TextField
         inputProps={{
-          maxLength: 100,
+          maxLength: 100
         }}
         fullWidth
         value={search}
         onChange={handleChangeInput}
         sx={{
-          mb: 1,
+          mb: 1
         }}
         variant="outlined"
         label="Search Query"
@@ -80,7 +76,7 @@ export default function SearchRecipesViaText() {
           top: overSm ? '120px' : '300px',
           bottom: 'unset',
           background: 'transparent',
-          zIndex: 10000,
+          zIndex: 10000
         }}
         open={loading || false}
       >

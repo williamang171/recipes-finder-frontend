@@ -26,15 +26,15 @@ const examples = [
   'watermelon',
   'xiaolongbao',
   'yam',
-  'zucchini',
+  'zucchini'
 ];
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
   cursor: 'pointer',
   transition: 'color 300ms ease',
   '&:hover': {
-    color: theme.palette.primary.main,
-  },
+    color: theme.palette.primary.main
+  }
 }));
 
 interface Props {

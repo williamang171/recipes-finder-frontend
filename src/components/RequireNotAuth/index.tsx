@@ -18,7 +18,7 @@ export default function RequireNotAuth() {
           justifyContent: 'center',
           alignItems: 'center',
           flexWrap: 'wrap',
-          flexDirection: 'column',
+          flexDirection: 'column'
         }}
       >
         <CircularProgress color="inherit" />
