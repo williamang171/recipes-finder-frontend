@@ -40,7 +40,7 @@ export default function GitHubPage() {
     <Layout>
       {links.map((l) => {
         return (
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" gutterBottom key={l.title}>
             <p>
               {l.title}:{' '}
               <a href={l.href} target="_blank" rel="noopener noreferrer" style={aStyle}>

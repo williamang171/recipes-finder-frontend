@@ -107,7 +107,7 @@ export default function SignUp() {
                 name="password"
                 control={control}
                 defaultValue=""
-                render={({ field, fieldState }) => (
+                render={({ field }) => (
                   <TextField
                     type="password"
                     fullWidth

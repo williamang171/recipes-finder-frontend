@@ -1,3 +1,4 @@
+/* global process */
 import { useState, useRef, useMemo, useCallback } from 'react';
 import { ReCAPTCHA } from 'react-google-recaptcha';
 
