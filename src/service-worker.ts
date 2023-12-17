@@ -14,6 +14,7 @@ import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
 import { StaleWhileRevalidate } from 'workbox-strategies';
 
+// eslint-disable-next-line no-undef
 declare const self: ServiceWorkerGlobalScope;
 
 clientsClaim();
@@ -50,6 +51,7 @@ registerRoute(
     // Return true to signal that we want to use the handler.
     return true;
   },
+  /* global process */
   createHandlerBoundToURL(process.env.PUBLIC_URL + '/index.html')
 );
 
