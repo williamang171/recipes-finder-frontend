@@ -41,11 +41,14 @@ function usePredict() {
               //   autoHideDuration: 8000
               // });
               setProgress((v) => {
-                if (v >= 80 && v < 99) {
+                if (v >= 95 && v < 99) {
                   return v + 1;
                 }
+                if (v >= 75 && v < 99) {
+                  return v + 5;
+                }
                 if (v < 100) {
-                  return v + 20;
+                  return v + 25;
                 }
                 return 99;
               });
@@ -84,6 +87,7 @@ function usePredict() {
         return res;
       } catch (err) {
         handleError(err);
+        setProgress(-1);
         setPending(false);
       }
     },
@@ -114,6 +118,7 @@ function usePredict() {
         return res;
       } catch (err) {
         handleError(err);
+        setProgress(-1);
         setPending(false);
       }
     },

@@ -9,7 +9,8 @@ import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Link from '@mui/material/Link';
 
-import { Recipe } from 'interfaces/types';
+import { Recipe, RecipeSourceType } from 'interfaces/types';
+import useGetRecipeSourceLabel from 'hooks/useGetRecipeSourceLabel';
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
   overflow: 'hidden',
@@ -40,11 +41,10 @@ const LoadingBox = styled(Box)(({ theme }) => ({
 interface Props {
   url: string;
   imageUrl: string;
-  sourceType: string;
+  sourceType?: RecipeSourceType;
   title: string;
-  mealDbId?: string;
   id?: number;
-  redditPostId?: string;
+  sourceId?: string;
   extra?(recipe: Recipe): any;
   subredditNamePrefixed?: string;
 }
@@ -52,28 +52,14 @@ interface Props {
 const placeholderImgPath = '/recipe-placeholder-v5.jpg';
 
 export default function RecipeListItem(props: Props) {
-  const {
-    url,
-    imageUrl,
-    title,
-    extra,
-    mealDbId,
-    id,
-    redditPostId,
-    sourceType,
-    subredditNamePrefixed
-  } = props;
+  const { url, imageUrl, title, extra, sourceId, id, sourceType, subredditNamePrefixed } = props;
   const [imageSrc, setImageSrc] = React.useState(imageUrl || placeholderImgPath);
   const [loaded, setLoaded] = React.useState(false);
 
-  const recipeSource = React.useMemo(() => {
-    if (sourceType == 'themealdb') {
-      return 'themealdb';
-    }
-    if (sourceType == 'reddit') {
-      return subredditNamePrefixed || 'reddit';
-    }
-  }, [sourceType, subredditNamePrefixed]);
+  const recipeSource = useGetRecipeSourceLabel({
+    sourceType,
+    subredditNamePrefixed
+  });
 
   const theme = useTheme();
   const currentModeIsDark = theme.palette.mode === 'dark';
@@ -85,9 +71,9 @@ export default function RecipeListItem(props: Props) {
         ':hover': {
           boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
         },
-        minHeight: 300,
-        height: 300,
-        maxHeight: 300
+        minHeight: 250,
+        height: 250,
+        maxHeight: 250
       }}
       variant="outlined"
     >
@@ -95,14 +81,14 @@ export default function RecipeListItem(props: Props) {
         <Skeleton
           variant="rectangular"
           width={'100%'}
-          height={200}
+          height={150}
           sx={{ position: 'absolute', display: loaded ? 'none' : 'block' }}
         />
         <CardMedia
           component="img"
           loading="lazy"
           sx={{
-            height: 200,
+            height: 150,
             objectFit: 'cover'
           }}
           onError={() => {
@@ -152,8 +138,7 @@ export default function RecipeListItem(props: Props) {
               url,
               image_url: imageUrl,
               title,
-              mealdb_id: mealDbId,
-              reddit_post_id: redditPostId,
+              source_id: sourceId,
               id,
               source_type: sourceType,
               subreddit_name_prefixed: subredditNamePrefixed

@@ -16,7 +16,7 @@ export default function SearchRecipesViaText() {
   const overSm = useMediaQuery(theme.breakpoints.up('sm'));
 
   const { listItemExtra } = useListItemExtraBookmark({
-    fetchSavedRecipes: true
+    fetchSavedRecipes: false
   });
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {

@@ -14,11 +14,6 @@ const items = [
     icon: <SearchIcon />,
     title: 'Find via Queries',
     description: 'Find recipes via text based queries and filtering'
-  },
-  {
-    icon: <BookmarksIcon />,
-    title: 'Save Recipes',
-    description: 'Save recipes so that you can view them later'
   }
 ];
 
@@ -28,7 +23,7 @@ export default function Highlights() {
       <Grid container columnSpacing={12} rowSpacing={4}>
         {items.map((i) => {
           return (
-            <Grid item xs={12} sm={12} md={12} lg={4} key={i.title}>
+            <Grid item xs={12} sm={12} md={12} lg={6} key={i.title}>
               <Highlight title={i.title} description={i.description} icon={i.icon} />
             </Grid>
           );

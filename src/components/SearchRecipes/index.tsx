@@ -26,7 +26,7 @@ export default function SearchRecipes(props: SearchRecipesProps) {
   const { getRecipeIdeas, data: recipeIdeas, resetRecipeIdeas, loading } = useRecipeIdeas();
 
   const { listItemExtra } = useListItemExtraBookmark({
-    fetchSavedRecipes: true
+    fetchSavedRecipes: false
   });
 
   const handleClose = () => {

@@ -23,12 +23,12 @@ const links = [
     to: '/finder-image',
     icon: <ImageSearchIcon />
   },
-  {
-    name: 'Saved',
-    key: 'saved',
-    to: '/saved-recipes',
-    icon: <BookmarksIcon />
-  },
+  // {
+  //   name: 'Saved',
+  //   key: 'saved',
+  //   to: '/saved-recipes',
+  //   icon: <BookmarksIcon />
+  // },
   // {
   //     name: "Debug Auth",
   //     key: "debug-auth",

@@ -33,7 +33,7 @@ function App() {
               <Route element={<RequireAuth />}>
                 <Route path="/finder-text" element={<FinderPage />} />
                 <Route path="/finder-image" element={<FinderImagePage />} />
-                <Route path="/saved-recipes" element={<SavedRecipesPage />} />
+                {/* <Route path="/saved-recipes" element={<SavedRecipesPage />} /> */}
                 <Route path="/settings" element={<SettingsPage />} />
                 <Route path="/links" element={<LinksPage />} />
                 <Route path="/faq" element={<FAQPage />} />

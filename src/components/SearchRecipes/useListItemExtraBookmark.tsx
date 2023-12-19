@@ -53,7 +53,7 @@ interface Props {
   fetchSavedRecipes: boolean;
 }
 
-function generateSavedRecipesMap(savedRecipes: Array<Recipe>, key: 'reddit_post_id' | 'mealdb_id') {
+function generateSavedRecipesMap(savedRecipes: Array<Recipe>, key: 'source_id') {
   const obj: Record<string, Recipe> = {};
   savedRecipes.forEach((r: Recipe) => {
     if (r[key]) {
@@ -80,56 +80,74 @@ export default function useListItemExtraBookmark(props: Props) {
   }, [getSavedRecipes, isAuthenticated, fetchSavedRecipes]);
 
   const savedRecipesMapByMealId = useMemo(() => {
-    return generateSavedRecipesMap(savedRecipes, 'mealdb_id');
+    return generateSavedRecipesMap(
+      savedRecipes.filter((r) => r.source_type === 'themealdb'),
+      'source_id'
+    );
   }, [savedRecipes]);
 
   const savedRecipesByRedditPostId = useMemo(() => {
-    return generateSavedRecipesMap(savedRecipes, 'reddit_post_id');
+    return generateSavedRecipesMap(
+      savedRecipes.filter((r) => r.source_type === 'reddit'),
+      'source_id'
+    );
+  }, [savedRecipes]);
+
+  const savedRecipesBySpoonacularId = useMemo(() => {
+    return generateSavedRecipesMap(
+      savedRecipes.filter((r) => r.source_type === 'spoonacular'),
+      'source_id'
+    );
   }, [savedRecipes]);
 
   const findRecipe = useCallback(
     (recipe: Recipe) => {
-      const foundViaMealDbId = recipe.mealdb_id ? savedRecipesMapByMealId[recipe.mealdb_id] : false;
-      const foundViaRedditPostId = recipe.reddit_post_id
-        ? savedRecipesByRedditPostId[recipe.reddit_post_id]
-        : false;
-      return foundViaMealDbId || foundViaRedditPostId || false;
+      const foundViaMealDbId =
+        recipe.source_id && recipe.source_type === 'themealdb'
+          ? savedRecipesMapByMealId[recipe.source_id]
+          : false;
+      const foundViaSpoonacularId =
+        recipe.source_id && recipe.source_type === 'spoonacular'
+          ? savedRecipesBySpoonacularId[recipe.source_id]
+          : false;
+      return foundViaMealDbId || foundViaSpoonacularId || false;
     },
     [savedRecipesMapByMealId, savedRecipesByRedditPostId]
   );
 
   const listItemExtra = useCallback(
     (recipe: Recipe) => {
-      const found = findRecipe(recipe);
+      return null;
+      // const found = findRecipe(recipe);
 
-      return (
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-            pl: 1,
-            pb: 0.5,
-            mr: 0.5
-          }}
-        >
-          <StyledIconButton
-            isAuthenticated={isAuthenticated || false}
-            onClick={() => {
-              if (!isAuthenticated) {
-                return;
-              }
-              if (found) {
-                removeRecipe(found.id);
-                return;
-              }
-              createRecipe(recipe);
-            }}
-          >
-            <ListItemExtraBookmarkIcon found={found} isAuthenticated={isAuthenticated || false} />
-          </StyledIconButton>
-        </Box>
-      );
+      // return (
+      //   <Box
+      //     sx={{
+      //       display: 'flex',
+      //       justifyContent: 'flex-end',
+      //       alignItems: 'center',
+      //       pl: 1,
+      //       pb: 0.5,
+      //       mr: 0.5
+      //     }}
+      //   >
+      //     <StyledIconButton
+      //       isAuthenticated={isAuthenticated || false}
+      //       onClick={() => {
+      //         if (!isAuthenticated) {
+      //           return;
+      //         }
+      //         if (found) {
+      //           removeRecipe(found.id);
+      //           return;
+      //         }
+      //         createRecipe(recipe);
+      //       }}
+      //     >
+      //       <ListItemExtraBookmarkIcon found={found} isAuthenticated={isAuthenticated || false} />
+      //     </StyledIconButton>
+      //   </Box>
+      // );
     },
     [isAuthenticated, savedRecipesMapByMealId, createRecipe, removeRecipe, findRecipe]
   );

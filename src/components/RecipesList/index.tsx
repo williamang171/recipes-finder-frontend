@@ -32,7 +32,7 @@ export default function RecipesList(props: Props) {
               md={4}
               lg={3}
               xl={2}
-              key={r.reddit_post_id || r.mealdb_id}
+              key={r.source_id}
               sx={
                 belowSm
                   ? {
@@ -42,14 +42,13 @@ export default function RecipesList(props: Props) {
               }
             >
               <RecipeListItem
+                sourceId={r.source_id}
                 extra={listItemExtra}
-                redditPostId={r.reddit_post_id}
                 title={r.title || ''}
                 url={r.url}
                 imageUrl={r.image_url}
-                mealDbId={r.mealdb_id}
                 id={r.id}
-                sourceType={r.source_type || ''}
+                sourceType={r.source_type}
                 subredditNamePrefixed={r.subreddit_name_prefixed}
               />
             </Grid>

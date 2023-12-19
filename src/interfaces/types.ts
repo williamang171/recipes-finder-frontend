@@ -12,14 +12,15 @@ export interface Image {
   authorLink?: any;
 }
 
+export type RecipeSourceType = 'themealdb' | 'spoonacular' | 'reddit' | undefined;
+
 export interface Recipe {
   id?: number;
   name?: string;
   url: string;
   image_url: string;
-  mealdb_id?: string;
-  reddit_post_id?: string;
-  source_type?: string;
+  source_id?: string;
+  source_type?: RecipeSourceType;
   title: string;
   subreddit_name_prefixed?: string;
 }

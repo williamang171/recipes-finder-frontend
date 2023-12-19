@@ -27,7 +27,7 @@ export default function Hero() {
           color="text.primary"
           gutterBottom
         >
-          Find and Save Recipes
+          Recipes Finder
         </Typography>
         <Typography variant="h5" align="center" color="text.secondary" paragraph>
           Find recipes by providing text based queries, image urls, or uploading images
