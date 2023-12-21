@@ -33,7 +33,7 @@ export default function Hero() {
           Find recipes by providing text based queries, image urls, or uploading images
         </Typography>
         <Stack sx={{ pt: 4 }} direction="row" spacing={2} justifyContent="center">
-          <Button variant="contained" component="a" href="/auth/sign-in">
+          <Button variant="contained" component="a" href="/finder-text">
             Get Started
           </Button>
           <Button
