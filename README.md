@@ -8,13 +8,13 @@ https://github.com/williamang171/recipes-finder-backend
 
 ## Environment Variables
 
-| Key                          | Description                                                                                                                                                                                                                 |
-| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| REACT_APP_BACKEND_BASE_URL   | Backend URL for deployment, for local development you can leave it as is as it wouldn't be used. For `.env.production` environment, you would need to change this to your backend domain                                    |
-| REACT_APP_AUTH0_DOMAIN       | auth0 domain, you can get this by creating your own auth0 account at https://auth0.com/, you can refer to the guide here https://developer.auth0.com/resources/code-samples/full-stack to learn more about how to use auth0 |
-| REACT_APP_AUTH0_CLIENT_ID    | auth0 client id, like AUTH0_DOMAIN, you can get this by creating your own auth0 account at https://auth0.com/                                                                                                               |
-| REACT_APP_AUTH0_CALLBACK_URL | auth0 callback url after signing in, you can leave it as is. For `.env.production`, you would need to change to {your_app_url}/finder-text                                                                                  |
-| REACT_APP_AUTH0_AUDIENCE     | auth0 audience, like AUTH0_DOMAIN, you can get this by creating your own auth0 account at https://auth0.com/                                                                                                                |
+| Key                          | Description                                                                                                                                                                                                                            |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| REACT_APP_BACKEND_BASE_URL   | Backend URL for deployment, for local development you can leave it as is as it wouldn't be used. For `.env.production` environment, you would need to change this to your backend domain                                               |
+| REACT_APP_AUTH0_DOMAIN       | auth0 domain, you can get this by creating your own auth0 account at https://auth0.com/, you can refer to the guide here https://developer.auth0.com/resources/code-samples/full-stack to learn more about how to integrate with auth0 |
+| REACT_APP_AUTH0_CLIENT_ID    | auth0 client id, like AUTH0_DOMAIN, you can get this by creating your own auth0 account at https://auth0.com/                                                                                                                          |
+| REACT_APP_AUTH0_CALLBACK_URL | auth0 callback url after signing in, you can leave it as is. For `.env.production`, you would need to change to {your_app_url}/finder-text                                                                                             |
+| REACT_APP_AUTH0_AUDIENCE     | auth0 audience, like AUTH0_DOMAIN, you can get this by creating your own auth0 account at https://auth0.com/                                                                                                                           |
 
 ## Available Scripts
 
