@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import useAuth from 'hooks/useHttpAPI/useAuth';
+import useAuth from 'hooks/useHttpAPI/deprecated/useAuth';
 import jwtDecode from 'jwt-decode';
 import { useSnackbar } from 'notistack';
 

@@ -13,8 +13,10 @@ export default function Main(props: MainProps) {
       component="main"
       sx={{
         position: 'relative',
-        minHeight: '500px',
-        pt: 10,
+        height: 'calc(100vh - 64px)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: constants.color.main
       }}
     >

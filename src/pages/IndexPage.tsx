@@ -2,11 +2,9 @@ import Box from '@mui/material/Box';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import Header from 'components/Landing/Header';
-import Highlights from 'components/Landing/Highlights';
 import Hero from 'components/Landing/Hero';
 
 import Main from 'components/Landing/Main';
-import Section from 'components/Landing/Section';
 import useHello from 'hooks/useHttpAPI/useHello';
 import { useEffect } from 'react';
 
@@ -28,7 +26,7 @@ const useWakeUpDb = () => {
 };
 
 export default function IndexPage() {
-  useWakeUpDb();
+  // useWakeUpDb();
 
   return (
     <ThemeProvider theme={theme}>
@@ -37,9 +35,9 @@ export default function IndexPage() {
         <Main>
           <Hero />
         </Main>
-        <Section>
+        {/* <Section>
           <Highlights />
-        </Section>
+        </Section> */}
       </Box>
     </ThemeProvider>
   );

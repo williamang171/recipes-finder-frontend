@@ -3,7 +3,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import ImageFinder from './ImageFinder';
 import ImageListContent from './ImageListContent';
-import useUnsplash from 'hooks/useHttpAPI/useUnsplash';
+import useUnsplash from 'hooks/useHttpAPI/deprecated/useUnsplash';
 
 interface ImageFinderUnsplashProps {
   setImageUrl(imageUrl: string): any;

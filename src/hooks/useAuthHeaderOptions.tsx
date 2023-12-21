@@ -1,3 +1,4 @@
+// Used in older version of the app where auth is self-managed
 import { useCallback } from 'react';
 
 export function useAuthHeaderOptions() {

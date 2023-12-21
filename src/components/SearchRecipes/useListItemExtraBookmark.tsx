@@ -6,7 +6,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { styled } from '@mui/system';
 
 import { Recipe } from 'interfaces/types';
-import useRecipes from 'hooks/useHttpAPI/useRecipes';
+import useRecipes from 'hooks/useHttpAPI/deprecated/useRecipes';
 import { AuthContext } from 'contexts/AuthContext';
 
 interface StyledIconButtonProps extends IconButtonProps {

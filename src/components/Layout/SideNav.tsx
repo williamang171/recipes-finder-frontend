@@ -8,6 +8,7 @@ import Toolbar from '@mui/material/Toolbar';
 import { NavLink, useLocation } from 'react-router-dom';
 import { ListItemButton } from '@mui/material';
 import LinkIcon from '@mui/icons-material/Link';
+import LockIcon from '@mui/icons-material/LockOutlined';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 
 const links = [
@@ -30,11 +31,11 @@ const links = [
   //   icon: <BookmarksIcon />
   // },
   // {
-  //     name: "Debug Auth",
-  //     key: "debug-auth",
-  //     to: "/debug-auth",
-  //     icon: <LockIcon />
-  // }
+  //   name: 'Debug Auth',
+  //   key: 'debug-auth',
+  //   to: '/debug-auth',
+  //   icon: <LockIcon />
+  // },
   // {
   //     name: "Settings",
   //     key: "settings",

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { Avatar, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
@@ -8,9 +8,7 @@ import Menu from '@mui/material/Menu';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
 
-import LoginButton from 'components/Layout/LoginButton';
-import { AuthContext } from 'contexts/AuthContext';
-import useAuth from 'hooks/useHttpAPI/useAuth';
+import { useAuth0 } from '@auth0/auth0-react';
 
 interface Props {
   handleMenu(event: React.MouseEvent<HTMLElement>): any;
@@ -21,8 +19,7 @@ interface Props {
 
 export default function AuthItem(props: Props) {
   const { handleMenu, anchorEl, handleClose } = props;
-  const { isAuthenticated, user } = useContext(AuthContext);
-  const { logout } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth0();
   const { name, picture, email } = user || {};
   const [open, setOpen] = React.useState(false);
 
@@ -33,6 +30,14 @@ export default function AuthItem(props: Props) {
   const handleOpenModal = () => {
     handleClose();
     setOpen(true);
+  };
+
+  const handleLogout = () => {
+    logout({
+      logoutParams: {
+        returnTo: window.location.origin
+      }
+    });
   };
 
   const profileModal = (
@@ -64,10 +69,6 @@ export default function AuthItem(props: Props) {
       </DialogContent>
     </Dialog>
   );
-
-  if (isAuthenticated === false) {
-    return <LoginButton />;
-  }
 
   return (
     <div>
@@ -109,7 +110,7 @@ export default function AuthItem(props: Props) {
         onClose={handleClose}
       >
         <MenuItem onClick={handleOpenModal}>Profile</MenuItem>
-        <MenuItem onClick={logout}>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
       {profileModal}
     </div>

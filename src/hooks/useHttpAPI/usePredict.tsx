@@ -4,7 +4,7 @@ import { useCallback, useState, useMemo, useEffect } from 'react';
 import axios from 'configs/axios-instance';
 import useHandleHttpRequestError from '../useHandleHttpRequestError';
 import { AxiosError } from 'axios';
-import { useAuthHeaderOptions } from 'hooks/useAuthHeaderOptions';
+import { useAuthHeaderOptionsAuth0 } from 'hooks/useAuthHeaderOptionsAuth0';
 
 const apiBasePath = 'api/v1/predict';
 
@@ -13,10 +13,9 @@ function usePredict() {
   const [predictions, setPredictions] = useState([]);
   const { handleError } = useHandleHttpRequestError();
   const [pending, setPending] = useState(false);
-  // const { setLoading } = useContext(GlobalLoadingContext);
   const { enqueueSnackbar } = useSnackbar();
 
-  const getAuthHeaderOptions = useAuthHeaderOptions();
+  const getAuthHeaderOptions = useAuthHeaderOptionsAuth0();
 
   useEffect(() => {
     if (progress === 100) {
@@ -69,6 +68,7 @@ function usePredict() {
       try {
         setPending(true);
         setProgress(0);
+        const authHeaderOptions = await getAuthHeaderOptions();
         const res = await axios.post(
           `${apiBasePath}/`,
           {
@@ -76,7 +76,7 @@ function usePredict() {
           },
           {
             ...options,
-            ...getAuthHeaderOptions(),
+            ...authHeaderOptions,
             'axios-retry': axiosRetryConfig
           }
         );
@@ -106,9 +106,10 @@ function usePredict() {
       try {
         setPending(true);
         setProgress(0);
+        const authHeaderOptions = await getAuthHeaderOptions();
         const res = await axios.post(`${apiBasePath}/upload`, formData, {
           ...options,
-          ...getAuthHeaderOptions(),
+          ...authHeaderOptions,
           'axios-retry': axiosRetryConfig
         });
         setProgress(100);

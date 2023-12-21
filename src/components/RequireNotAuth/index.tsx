@@ -1,14 +1,13 @@
-import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { Typography, Box } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import { AuthContext } from 'contexts/AuthContext';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function RequireNotAuth() {
-  const { isAuthenticated } = React.useContext(AuthContext);
+  const { isLoading, isAuthenticated } = useAuth0();
 
-  if (isAuthenticated === null) {
+  if (isLoading) {
     return (
       <Box
         sx={{

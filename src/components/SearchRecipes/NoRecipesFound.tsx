@@ -1,4 +1,4 @@
-import { SEARCH_TYPE } from 'hooks/useHttpAPI/useMealDb';
+import { SEARCH_TYPE } from 'hooks/useHttpAPI/deprecated/useMealDb';
 
 interface Props {
   searchType: string;
