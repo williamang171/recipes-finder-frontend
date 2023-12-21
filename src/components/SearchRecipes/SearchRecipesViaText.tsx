@@ -50,6 +50,7 @@ export default function SearchRecipesViaText() {
     (s: string) => {
       setSearch(s);
       getRecipeIdeas(s);
+      setSubmitted(true);
     },
     [setSearch]
   );

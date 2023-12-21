@@ -1,4 +1,5 @@
 /* global process */
+// Used in older version of the app where recaptcha is required
 import { useState, useRef, useMemo, useCallback } from 'react';
 import { ReCAPTCHA } from 'react-google-recaptcha';
 

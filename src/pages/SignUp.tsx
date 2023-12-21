@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import useAuth from 'hooks/useHttpAPI/useAuth';
+import useAuth from 'hooks/useHttpAPI/deprecated/useAuth';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import Link from '@mui/material/Link';
 import { useForm, Controller } from 'react-hook-form';

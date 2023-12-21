@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 
 import axios from 'configs/axios-instance';
 import { Image } from 'interfaces/types';
-import useHandleHttpRequestError from '../useHandleHttpRequestError';
+import useHandleHttpRequestError from '../../useHandleHttpRequestError';
 
 const apiBasePath = '/api/v1/unsplash';
 

@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import axios from 'configs/axios-instance';
 import { Recipe } from 'interfaces/types';
 import useHandleHttpRequestError from 'hooks/useHandleHttpRequestError';
-import { useAuthHeaderOptions } from 'hooks/useAuthHeaderOptions';
+import { useAuthHeaderOptionsAuth0 } from 'hooks/useAuthHeaderOptionsAuth0';
 
 const apiBasePath = '/api/v1/recipe_ideas';
 
@@ -11,14 +11,14 @@ function useRecipeIdeas() {
   const { handleError } = useHandleHttpRequestError();
   const [data, setData] = useState<Array<Recipe>>([]);
   const [loading, setLoading] = useState(false);
-  const getAuthHeaderOptions = useAuthHeaderOptions();
+  const getAuthHeaderOptions = useAuthHeaderOptionsAuth0();
 
   const getRecipeIdeas = useCallback(
     async (q: string) => {
       setLoading(true);
-      // const options = await getOptions();
+      const headerOptions = await getAuthHeaderOptions();
       axios
-        .get(`${apiBasePath}/async?q=${q}`, getAuthHeaderOptions())
+        .get(`${apiBasePath}/aggregate?q=${q}`, headerOptions)
         .then((res) => {
           setData(res.data);
           setLoading(false);

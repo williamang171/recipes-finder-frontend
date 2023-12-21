@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@mui/material/Link';
-import useAuth from 'hooks/useHttpAPI/useAuth';
+import useAuth from 'hooks/useHttpAPI/deprecated/useAuth';
 import Alert from '@mui/material/Alert';
 import LoadingButton from '@mui/lab/LoadingButton';
 

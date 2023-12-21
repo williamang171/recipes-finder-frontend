@@ -8,7 +8,7 @@ import DialogContent from '@mui/material/DialogContent';
 import CloseIcon from '@mui/icons-material/Close';
 
 import RecipesList from 'components/RecipesList';
-import { SEARCH_TYPE } from 'hooks/useHttpAPI/useMealDb';
+import { SEARCH_TYPE } from 'hooks/useHttpAPI/deprecated/useMealDb';
 import useRecipeIdeas from 'hooks/useHttpAPI/useRecipeIdeas';
 // import RadioSearchType from "./RadioSearchType";
 import useListItemExtraBookmark from './useListItemExtraBookmark';

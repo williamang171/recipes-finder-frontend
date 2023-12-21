@@ -1,9 +1,10 @@
+// No longer using, keep for reference
 import { useCallback, useContext, useState } from 'react';
 
 import axios from 'configs/axios-instance';
 import { User, UserLogin } from 'interfaces/types';
 import { useSnackbar } from 'notistack';
-import useHandleHttpRequestError from '../useHandleHttpRequestError';
+import useHandleHttpRequestError from '../../useHandleHttpRequestError';
 import { AuthContext } from 'contexts/AuthContext';
 
 const apiBasePath = '/api/v1/auth';

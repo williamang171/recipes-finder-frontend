@@ -6,7 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Recipe } from 'interfaces/types';
 import Layout from 'components/Layout';
 import RecipesList from 'components/RecipesList';
-import useRecipes from 'hooks/useHttpAPI/useRecipes';
+import useRecipes from 'hooks/useHttpAPI/deprecated/useRecipes';
 import { AuthContext } from 'contexts/AuthContext';
 
 export default function SavedRecipesPage() {
