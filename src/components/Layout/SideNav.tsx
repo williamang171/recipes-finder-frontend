@@ -23,7 +23,7 @@ const links = [
     key: 'finder-image',
     to: '/finder-image',
     icon: <ImageSearchIcon />
-  },
+  }
   // {
   //   name: 'Saved',
   //   key: 'saved',
@@ -42,18 +42,18 @@ const links = [
   //     to: "/settings",
   //     icon: <SettingsIcon />
   // },
-  {
-    name: 'Links',
-    key: 'links',
-    to: '/links',
-    icon: <LinkIcon />
-  },
-  {
-    name: 'FAQ',
-    key: 'faq',
-    to: '/faq',
-    icon: <QuestionAnswerIcon />
-  }
+  // {
+  //   name: 'Links',
+  //   key: 'links',
+  //   to: '/links',
+  //   icon: <LinkIcon />
+  // },
+  // {
+  //   name: 'FAQ',
+  //   key: 'faq',
+  //   to: '/faq',
+  //   icon: <QuestionAnswerIcon />
+  // }
 ];
 
 export default function SideNav() {

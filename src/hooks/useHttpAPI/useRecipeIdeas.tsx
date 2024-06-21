@@ -18,7 +18,7 @@ function useRecipeIdeas() {
       setLoading(true);
       const headerOptions = await getAuthHeaderOptions();
       axios
-        .get(`${apiBasePath}/aggregate?q=${q}`, headerOptions)
+        .get(`${apiBasePath}/mealdb?q=${q}`, headerOptions)
         .then((res) => {
           setData(res.data);
           setLoading(false);
