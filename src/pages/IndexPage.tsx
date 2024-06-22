@@ -31,7 +31,6 @@ export default function IndexPage() {
   // useWakeUpDb();
 
   return (
-    <ThemeProvider theme={theme}>
       <Box sx={{ minWidth: '360px' }}>
         <Header />
         <Main>
@@ -41,6 +40,5 @@ export default function IndexPage() {
           <Highlights />
         </Section> */}
       </Box>
-    </ThemeProvider>
   );
 }

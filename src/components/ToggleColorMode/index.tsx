@@ -31,7 +31,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') => ({
         default: grey[900],
         paper: grey[900]
       }
-    })
+    }),
   }
 });
 
