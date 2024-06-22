@@ -1,8 +1,8 @@
-import { grey, blueGrey } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 
 export default {
   color: {
-    main: blueGrey[900],
-    section: grey[900]
+    main: grey[200],
+    section: grey[200]
   }
 };

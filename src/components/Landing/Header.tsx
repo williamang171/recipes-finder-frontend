@@ -9,7 +9,6 @@ export default function Header() {
   return (
     <Toolbar sx={{ background: constants.color.main }}>
       <Box color="inherit" />
-      📔
       <Typography component="h2" variant="h6" color="text.primary" noWrap sx={{ flex: 1, ml: 1 }}>
         Recipes Finder
       </Typography>

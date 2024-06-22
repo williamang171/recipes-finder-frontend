@@ -6,7 +6,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 import { ColorModeContext } from 'components/ToggleColorMode';
-import { blueGrey } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 
 export default function ColorMode() {
   const theme = useTheme();
@@ -27,7 +27,7 @@ export default function ColorMode() {
         ) : (
           <Brightness4Icon
             sx={{
-              color: blueGrey[700]
+              color: grey[900]
             }}
           />
         )}

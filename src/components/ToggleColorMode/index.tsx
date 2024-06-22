@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect, createContext, useState } from 'react';
 
-import { grey, blue, blueGrey, deepOrange } from '@mui/material/colors';
+import { grey, blue } from '@mui/material/colors';
 import { ThemeProvider, createTheme, alpha } from '@mui/material/styles';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
@@ -24,12 +24,12 @@ export const getDesignTokens = (mode: 'light' | 'dark') => ({
       main: '#D127E0'
     },
     divider: mode === 'dark' ? alpha(blue[100], 0.08) : grey[100],
-    primaryDark: blueGrey,
+    primaryDark: grey,
     mode,
     ...(mode === 'dark' && {
       background: {
-        default: blueGrey[900],
-        paper: blueGrey[900]
+        default: grey[900],
+        paper: grey[900]
       }
     })
   }

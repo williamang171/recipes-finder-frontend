@@ -10,7 +10,9 @@ import { useEffect } from 'react';
 
 const theme = createTheme({
   palette: {
-    mode: 'dark'
+    primary: {
+      main: '#439A97'
+    },
   }
 });
 
@@ -30,7 +32,7 @@ export default function IndexPage() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box>
+      <Box sx={{ minWidth: '360px' }}>
         <Header />
         <Main>
           <Hero />

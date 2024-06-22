@@ -11,6 +11,21 @@ interface Props {
   loading?: boolean;
 }
 
+// Mock data
+const rs: any[] = [
+  {
+    id: 1,
+    source_id: '2',
+    subreddit_name_prefixed: 'x',
+    "image_url": "https://www.themealdb.com/images/media/meals/qtqwwu1511792650.jpg",
+    "title": "Chinon Apple Tarts",
+    "source_type": "themealdb",
+    "url": "https://themealdb.com/meal.php?c=52910",
+    "mealdb_id": "52910"
+  }
+]
+
+
 export default function RecipesList(props: Props) {
   const { recipes = [], empty, listItemExtra, loading } = props;
   const theme = useTheme();
