@@ -46,7 +46,6 @@ export default function Header(props: Props) {
           <MenuIcon />
         </IconButton>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          📔
           <Typography variant="h6" noWrap component="div" sx={{ ml: 1 }}>
             Recipes Finder
           </Typography>
