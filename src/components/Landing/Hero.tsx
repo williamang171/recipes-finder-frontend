@@ -12,18 +12,19 @@ export default function Hero() {
   const theme = useTheme();
   const overSm = useMediaQuery(theme.breakpoints.up('sm'));
   const underLg = useMediaQuery(theme.breakpoints.down('lg'));
+  const underMd = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Box
       sx={{
         pb: 6,
         pl: 3,
-        pr: 3,
+        pr: 3
       }}
     >
       <Container maxWidth={'lg'}>
         <Grid container>
-          <Grid xs={12} lg={6} sx={{ pr: 5, mb: underLg ? 6 : 0 }} >
+          <Grid xs={12} md={6} sx={{ pr: 5, mb: underMd ? 6 : 0 }}>
             <Typography
               component="h1"
               variant={overSm ? 'h2' : 'h4'}
@@ -41,9 +42,13 @@ export default function Hero() {
               </Button>
             </Stack>
           </Grid>
-          <Grid xs={12} lg={6}>
-            <Box style={{ display: 'flex', justifyContent: underLg ? 'center' : 'flex-end' }}>
-              <img style={{ maxWidth: '100%' }} src="/undraw_search.svg" alt="search-svg" />
+          <Grid xs={12} md={6}>
+            <Box style={{ display: 'flex', justifyContent: underMd ? 'center' : 'flex-end' }}>
+              <img
+                style={{ maxWidth: '100%', maxHeight: underMd ? '40vh' : 'unset' }}
+                src="/undraw_search.svg"
+                alt="search-svg"
+              />
             </Box>
           </Grid>
         </Grid>
